@@ -1,0 +1,14 @@
+[
+  {"experiment_id":"admit_000_full_ungated","hypothesis":"Current full retrieval parent","citation":{},"second":{}},
+  {"experiment_id":"admit_001_base_only","hypothesis":"Expansion noise may outweigh its candidate gain","citation":{"enabled":false},"second":{"enabled":false}},
+  {"experiment_id":"admit_002_citation_only","hypothesis":"Citation may help without second-round noise","citation":{},"second":{"enabled":false}},
+  {"experiment_id":"admit_003_second_only","hypothesis":"Second round may help without citation noise","citation":{"enabled":false},"second":{}},
+  {"experiment_id":"admit_004_score015","hypothesis":"A low relevance floor may remove expansion drift","citation":{"min_score":0.15},"second":{"min_score":0.15}},
+  {"experiment_id":"admit_005_score020","hypothesis":"A moderate relevance floor may improve density","citation":{"min_score":0.20},"second":{"min_score":0.20}},
+  {"experiment_id":"admit_006_score025","hypothesis":"A strict relevance floor may preserve only useful expansion","citation":{"min_score":0.25},"second":{"min_score":0.25}},
+  {"experiment_id":"admit_007_coverage010","hypothesis":"Expansion candidates should cover a query facet","citation":{"min_coverage":0.10},"second":{"min_coverage":0.10}},
+  {"experiment_id":"admit_008_coverage020","hypothesis":"A stronger gap-coverage floor may control noise","citation":{"min_coverage":0.20},"second":{"min_coverage":0.20}},
+  {"experiment_id":"admit_009_any_evidence010","hypothesis":"Expansion needs lexical, IDF or constraint evidence","citation":{"min_any_evidence":0.10},"second":{"min_any_evidence":0.10}},
+  {"experiment_id":"admit_010_top25_each","hypothesis":"A fixed small expansion budget may retain marginal utility","citation":{"top_n":25},"second":{"top_n":25}},
+  {"experiment_id":"admit_011_top50_each","hypothesis":"A moderate expansion budget may balance recall and noise","citation":{"top_n":50},"second":{"top_n":50}}
+]

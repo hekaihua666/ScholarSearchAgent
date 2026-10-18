@@ -1,0 +1,11 @@
+schema_version: 1
+method: DSFR
+policy: [T4, T3]
+max_variants: 2
+sources: [arxiv, openalex]
+per_source_limit: 25
+a1_trace_threshold: 0.65
+trigger: gap_triggered
+challenger: R2_dual_A0
+core_protected: true
+max_api_per_query: 4

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>研寻 AI · Logo 方案对比</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; color:#23334d; background:#f3f7fd; font-family:Inter,"Microsoft YaHei",sans-serif; }
+    main { max-width:1160px; margin:auto; padding:42px 32px 32px; }
+    .page-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:27px; }
+    .eyebrow { margin:0 0 10px; color:#3478ed; font-size:12px; font-weight:650; letter-spacing:2px; }
+    h1 { margin:0; font-size:29px; letter-spacing:-.8px; }
+    .intro { margin:10px 0 0; color:#73839a; font-size:14px; }
+    .tag { border:1px solid #dce7f5; border-radius:20px; padding:9px 14px; background:white; color:#60748f; font-size:12px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:20px; }
+    .card { overflow:hidden; border:1px solid #dce7f5; border-radius:22px; background:white; box-shadow:0 10px 28px #294b7a04; }
+    .card-top { display:flex; justify-content:space-between; align-items:center; padding:20px 23px 0; }
+    .label { display:flex; align-items:center; gap:9px; font-size:15px; font-weight:650; }
+    .letter { display:grid; place-items:center; width:25px; height:25px; border-radius:8px; background:#eff5ff; color:#3478ed; font-size:12px; }
+    .idea { color:#7d8ca2; font-size:12px; }
+    .showcase { min-height:151px; display:flex; align-items:center; justify-content:center; gap:22px; padding:23px; }
+    .large-icon { width:76px; height:76px; }
+    .wordmark { font-size:30px; letter-spacing:.2px; font-weight:700; }
+    .wordmark span,.header-brand span { color:#3478ed; }
+    .subtitle { margin-top:8px; font-size:12px; letter-spacing:.4px; color:#7c8da5; }
+    .in-header { display:flex; align-items:center; justify-content:space-between; gap:16px; margin:0 16px; padding:16px; background:#f5f9ff; border:1px solid #e9f0f9; border-radius:12px; }
+    .header-brand { display:flex; align-items:center; gap:10px; font-size:18px; font-weight:650; white-space:nowrap; }
+    .header-brand img { width:34px; height:34px; }
+    .scale-label { color:#8190a5; font-size:11px; }
+    .card-bottom { display:flex; justify-content:space-between; align-items:center; padding:16px 23px 19px; gap:16px; }
+    .detail { margin:0; color:#687d98; font-size:12px; }
+    .preview-button { border:0; padding:7px 0; background:none; color:#3478ed; font:inherit; font-size:12px; cursor:pointer; white-space:nowrap; }
+    .preview-button:hover { color:#1c56c2; }
+    button:focus-visible { outline:2px solid #3478ed; outline-offset:4px; border-radius:4px; }
+    .footer { text-align:center; margin:24px 0 0; color:#8a99af; font-size:12px; }
+    dialog { width:min(1440px,96vw); height:94vh; max-height:100vh; padding:0; border:1px solid #dce7f5; border-radius:18px; box-shadow:0 24px 100px #10284a33; }
+    dialog::backdrop { background:#152d4c66; }
+    .dialog-bar { height:54px; display:flex; align-items:center; justify-content:space-between; padding:0 22px; border-bottom:1px solid #e6eef8; }
+    .dialog-bar strong { font-size:14px; }
+    .close-button { background:#eff5ff; color:#3478ed; border:0; border-radius:8px; padding:7px 12px; font:inherit; font-size:12px; cursor:pointer; }
+    iframe { display:block; width:100%; height:calc(100% - 54px); border:0; background:#f5f9ff; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="page-top">
+      <div>
+        <p class="eyebrow">研寻 AI / 品牌图形探索</p>
+        <h1>四种方向，选一个你喜欢的。</h1>
+        <p class="intro">统一蓝色主题，对比图形本身与放进页眉后的效果。</p>
+      </div>
+      <span class="tag">Logo 方案 · 第一版</span>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="card-top"><div class="label"><span class="letter">A</span>智页</div><span class="idea">论文 × AI 灵感</span></div>
+        <div class="showcase"><img class="large-icon" data-logo="a" alt="A 智页图标" /><div><div class="wordmark">研寻 <span>AI</span></div><div class="subtitle">智能论文检索与推荐系统</div></div></div>
+        <div class="in-header"><div class="header-brand"><img data-logo="a" alt="" />研寻 <span>AI</span></div><span class="scale-label">实际页眉尺寸 · 34 px</span></div>
+        <div class="card-bottom"><p class="detail">纸页与星光，直接传达论文助手。</p><button class="preview-button" data-concept="a">看首页效果 ↗</button></div>
+      </article>
+      <article class="card">
+        <div class="card-top"><div class="label"><span class="letter">B</span>寻星</div><span class="idea">检索 × AI 发现</span></div>
+        <div class="showcase"><img class="large-icon" data-logo="b" alt="B 寻星图标" /><div><div class="wordmark">研寻 <span>AI</span></div><div class="subtitle">智能论文检索与推荐系统</div></div></div>
+        <div class="in-header"><div class="header-brand"><img data-logo="b" alt="" />研寻 <span>AI</span></div><span class="scale-label">实际页眉尺寸 · 34 px</span></div>
+        <div class="card-bottom"><p class="detail">放大镜与星光，轻盈、含义直观。</p><button class="preview-button" data-concept="b">看首页效果 ↗</button></div>
+      </article>
+      <article class="card">
+        <div class="card-top"><div class="label"><span class="letter">C</span>研翼</div><span class="idea">折页 × 字母 Y</span></div>
+        <div class="showcase"><img class="large-icon" data-logo="c" alt="C 研翼图标" /><div><div class="wordmark">研寻 <span>AI</span></div><div class="subtitle">智能论文检索与推荐系统</div></div></div>
+        <div class="in-header"><div class="header-brand"><img data-logo="c" alt="" />研寻 <span>AI</span></div><span class="scale-label">实际页眉尺寸 · 34 px</span></div>
+        <div class="card-bottom"><p class="detail">折页汇成 Y，偏简洁的品牌符号。</p><button class="preview-button" data-concept="c">看首页效果 ↗</button></div>
+      </article>
+      <article class="card">
+        <div class="card-top"><div class="label"><span class="letter">D</span>研印</div><span class="idea">中文识别 × 智能星光</span></div>
+        <div class="showcase"><img class="large-icon" data-logo="d" alt="D 研印图标" /><div><div class="wordmark">研寻 <span>AI</span></div><div class="subtitle">智能论文检索与推荐系统</div></div></div>
+        <div class="in-header"><div class="header-brand"><img data-logo="d" alt="" />研寻 <span>AI</span></div><span class="scale-label">实际页眉尺寸 · 34 px</span></div>
+        <div class="card-bottom"><p class="detail">重绘“研”字，延续原来的中文辨识。</p><button class="preview-button" data-concept="d">看首页效果 ↗</button></div>
+      </article>
+    </div>
+    <p class="footer">点击“看首页效果”可在当前网页中预览；正式首页待选定后替换。</p>
+  </main>
+  <dialog id="preview-dialog" aria-labelledby="preview-title">
+    <div class="dialog-bar"><strong id="preview-title">首页预览</strong><button class="close-button" id="close-preview">关闭预览</button></div>
+    <iframe id="home-preview" title="所选 Logo 的首页预览"></iframe>
+  </dialog>
+  <script>
+    // 仅修改预览窗口里的品牌，生产首页及检索逻辑不参与方案选择。
+    const concepts = {
+      a:{name:'A · 智页',file:'a-paper-spark.svg',src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIj4KICA8dGl0bGUgaWQ9InRpdGxlIj7mmbrpobXvvJrorrrmlofkuI7mmbrog73ngbXmhJ88L3RpdGxlPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJibHVlIiB4MT0iOCIgeTE9IjIiIHgyPSI1OCIgeTI9IjY0IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM1QjlFRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNTYzRTgiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0g6JOd6Imy5pa55b2i5L+d55WZ5bqU55So5Zu+5qCH55qE6K+G5Yir5bqm77yM57q46aG15ZKM5Zub6KeS5pif5YiG5Yir6KGo6L6+6K665paH5LiOIEFJ44CCIC0tPgogIDxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSJ1cmwoI2JsdWUpIi8+CiAgPHBhdGggZD0iTTM1IDE1SDIyYTUgNSAwIDAgMC01IDV2MjVhNSA1IDAgMCAwIDUgNWgyMGE1IDUgMCAwIDAgNS01VjMyIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjMuNSIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0iTTI1IDMwaDhNMjUgMzhoMTQiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMy41IiBzdHJva2UtbGluZWNhcD0icm91bmQiLz4KICA8cGF0aCBkPSJtNDQgMTAgMy4yIDguOEw1NiAyMmwtOC44IDMuMkw0NCAzNGwtMy4yLTguOEwzMiAyMmw4LjgtMy4yTDQ0IDEwWiIgZmlsbD0id2hpdGUiLz4KPC9zdmc+Cg=='},
+      b:{name:'B · 寻星',file:'b-search-spark.svg',src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIj4KICA8dGl0bGUgaWQ9InRpdGxlIj7lr7vmmJ/vvJpBSSDovoXliqnmo4DntKI8L3RpdGxlPgogIDxkZWZzPgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJibHVlIiB4MT0iOSIgeTE9IjkiIHgyPSI1MyIgeTI9IjU4IiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+CiAgICAgIDxzdG9wIHN0b3AtY29sb3I9IiM1NzlCRkYiLz48c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiMyNDY0RTkiLz4KICAgIDwvbGluZWFyR3JhZGllbnQ+CiAgPC9kZWZzPgogIDwhLS0g5byA5pS+55qE5pS+5aSn6ZWc6L2u5buT5pCt6YWN5Lit5aSu5Zub6KeS5pif77yM5bCP5bC65a+45LiL5LuN6IO96L6o6K6k5qOA57Si5ZCr5LmJ44CCIC0tPgogIDxjaXJjbGUgY3g9IjI4IiBjeT0iMjgiIHI9IjIwIiBmaWxsPSIjRUNGNEZGIi8+CiAgPGNpcmNsZSBjeD0iMjgiIGN5PSIyOCIgcj0iMjAiIHN0cm9rZT0idXJsKCNibHVlKSIgc3Ryb2tlLXdpZHRoPSI2Ii8+CiAgPHBhdGggZD0ibTQzIDQzIDEyIDEyIiBzdHJva2U9InVybCgjYmx1ZSkiIHN0cm9rZS13aWR0aD0iOCIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIi8+CiAgPHBhdGggZD0ibTI4IDE1IDMuNyA5LjNMNDEgMjhsLTkuMyAzLjdMMjggNDFsLTMuNy05LjNMMTUgMjhsOS4zLTMuN0wyOCAxNVoiIGZpbGw9InVybCgjYmx1ZSkiLz4KPC9zdmc+Cg=='},
+      c:{name:'C · 研翼',file:'c-folded-y.svg',src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIj4KICA8dGl0bGUgaWQ9InRpdGxlIj7noJTnv7zvvJrmipjpobXmnoTmiJDnmoTlrZfmr40gWTwvdGl0bGU+CiAgPGRlZnM+CiAgICA8bGluZWFyR3JhZGllbnQgaWQ9ImJsdWUiIHgxPSIzNiIgeTE9IjE1IiB4Mj0iMjgiIHkyPSI1OCIgZ3JhZGllbnRVbml0cz0idXNlclNwYWNlT25Vc2UiPgogICAgICA8c3RvcCBzdG9wLWNvbG9yPSIjNEI5MUZGIi8+PHN0b3Agb2Zmc2V0PSIxIiBzdG9wLWNvbG9yPSIjMjQ2M0U3Ii8+CiAgICA8L2xpbmVhckdyYWRpZW50PgogICAgPGxpbmVhckdyYWRpZW50IGlkPSJsaWdodCIgeDE9IjgiIHkxPSIxMCIgeDI9IjM0IiB5Mj0iMzUiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KICAgICAgPHN0b3Agc3RvcC1jb2xvcj0iIzdBQ0JGRiIvPjxzdG9wIG9mZnNldD0iMSIgc3RvcC1jb2xvcj0iIzU1QTJGRiIvPgogICAgPC9saW5lYXJHcmFkaWVudD4KICA8L2RlZnM+CiAgPCEtLSDlt6blj7PmipjpobXmsYfmiJAgWe+8jOWRvOW6lOeglOWvu+eahOaLvOmfs+mmluWtl+avje+8m+W6lemDqOW7tuS8uOS4uuS5puetvuOAgiAtLT4KICA8cGF0aCBkPSJNNyAxMGgxN2wxMiAxNy0xMSAxM0w3IDE2di02WiIgZmlsbD0idXJsKCNsaWdodCkiLz4KICA8cGF0aCBkPSJNNDIgMTBoMTV2N0wzOSAzOXYxN2wtNy00LTggNFYzNmwxOC0yNloiIGZpbGw9InVybCgjYmx1ZSkiLz4KICA8cGF0aCBkPSJtMjQgMzYgMTItOS04IDE3LTQtOFoiIGZpbGw9IiMxQjUxQ0MiIGZpbGwtb3BhY2l0eT0iLjU1Ii8+CiAgPHBhdGggZD0ibTUxIDM4IDIgNSA1IDItNSAyLTIgNS0yLTUtNS0yIDUtMiAyLTVaIiBmaWxsPSIjNkRCOEZGIi8+Cjwvc3ZnPgo='},
+      d:{name:'D · 研印',file:'d-yan-character.svg',src:'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2NCA2NCIgZmlsbD0ibm9uZSIgcm9sZT0iaW1nIiBhcmlhLWxhYmVsbGVkYnk9InRpdGxlIj4KICA8dGl0bGUgaWQ9InRpdGxlIj7noJTljbDvvJrlh6DkvZXljJbnoJTlrZfkuI7mmbrog73mmJ/lhYk8L3RpdGxlPgogIDwhLS0g5omL5bel5Yeg5L2V56yU55S75p6E5oiQ56CU5a2X77yM5LiN5L6d6LWW55So5oi355S16ISR5piv5ZCm5a6J6KOF54m55a6a5a2X5L2T44CCIC0tPgogIDxyZWN0IHg9IjIiIHk9IjIiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcng9IjE4IiBmaWxsPSIjRThGMUZGIi8+CiAgPGcgc3Ryb2tlPSIjMzQ3OEVEIiBzdHJva2Utd2lkdGg9IjQuMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIj4KICAgIDxwYXRoIGQ9Ik0xMSAyMGgxNk0xOSAyMGwtOCAxNk0xNSAzMmgxMXYxNkgxNVYzMloiLz4KICAgIDxwYXRoIGQ9Ik0zMyAyMGgxMk0zMCAzMmgyMU0zNiAyMHYxOGMwIDUtMSA4LTUgMTJNNDYgMjR2MjYiLz4KICA8L2c+CiAgPHBhdGggZD0ibTUxIDggMi4xIDUuOUw1OSAxNmwtNS45IDIuMUw1MSAyNGwtMi4xLTUuOUw0MyAxNmw1LjktMi4xTDUxIDhaIiBmaWxsPSIjMzQ3OEVEIi8+Cjwvc3ZnPgo='}
+    };
+    // 内嵌 SVG 指定标准 MIME，避免 Windows 静态服务将 svg 识别为 image/svg。
+    document.querySelectorAll('[data-logo]').forEach(img => {
+      img.src = concepts[img.dataset.logo].src;
+    });
+    const dialog = document.getElementById('preview-dialog');
+    const frame = document.getElementById('home-preview');
+    document.querySelectorAll('[data-concept]').forEach(button => {
+      button.addEventListener('click', () => {
+        const id = button.dataset.concept;
+        const concept = concepts[id];
+        document.getElementById('preview-title').textContent = concept.name + ' / 首页效果';
+        // iframe 与主页面同源；每次打开重新导航，关闭后不留下临时修改。
+        frame.onload = () => {
+          const doc = frame.contentDocument;
+          const icon = doc.createElement('img');
+          icon.src = concept.src;
+          icon.dataset.logo = id;
+          icon.alt = '';
+          icon.width = icon.height = 34;
+          icon.style.display = 'block';
+          doc.querySelector('.brand-icon').replaceWith(icon);
+          const name = doc.querySelector('.brand-name');
+          name.innerHTML = '研寻 <span style="color:#3478ed">AI</span>';
+        };
+        frame.src = '/?ui=logo-preview-' + button.dataset.concept;
+        dialog.showModal();
+      });
+    });
+    document.getElementById('close-preview').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+      frame.onload = null;
+      frame.src = 'about:blank';
+    });
+  </script>
+</body>
+</html>

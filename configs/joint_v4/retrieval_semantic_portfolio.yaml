@@ -1,0 +1,6 @@
+retrieval_profile: semantic_portfolio
+query_portfolio: semantic_only
+lexical_queries: current_llm_anchored
+semantic_variant: pseudo_document
+dual_frontier: false
+local_hybrid: false

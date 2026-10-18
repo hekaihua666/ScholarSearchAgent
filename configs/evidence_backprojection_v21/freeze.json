@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "schema": "ebp-v21-evidence-weighted-citation-backprojection",
+  "source_commit": "eca35d8ec5a1ea32be099cb9ae9860c0c9ffb0f2",
+  "required_views": 3,
+  "agreement_bonus": 0.05,
+  "reference_length_exponent": 0.5,
+  "target_limit": 100,
+  "api_calls_per_query": 1,
+  "identity": "OpenAlex ID with title fallback in evaluator",
+  "selection_policy": "candidate-pool expansion; retain frozen REG-MEQ Top20 router",
+  "evaluation": "calibration40 -> dev20 -> blind50 frozen replay"
+}

@@ -1,0 +1,9 @@
+schema_version: 1
+core_k: 2
+max_rescues: 1
+max_results: 3
+model_family: logistic
+training_variant: logistic_mined
+threshold: 0.887858659587
+near_duplicate_threshold: 0.85
+model_path: D:/AICompetition/ScholarSearchAgent/artifacts/core_rescue_v6/core_rescue_model.pkl

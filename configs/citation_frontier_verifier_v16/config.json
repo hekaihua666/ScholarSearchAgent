@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "method": "Citation Frontier Coarse-to-Fine Evidence Funnel",
+  "funnel_schema": "cfv16-funnel-1",
+  "coarse_title_cards": 100,
+  "evidence_candidates": 16,
+  "anchor_cards": 2,
+  "threshold": 95.0,
+  "margin": 2.0,
+  "max_replacements": 2,
+  "max_llm_calls_per_triggered_query": 2,
+  "skip_when_v10_already_acted": true
+}

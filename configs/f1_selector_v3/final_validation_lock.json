@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "locked_before_validation": true,
+  "selection_basis": "frozen dev20 only; validation30 gold not used for policy choice",
+  "candidate_snapshot": "validation30_balanced_final",
+  "protocols": ["official_set_f1_candidate", "f1_at_20_compat"],
+  "policies": [
+    {"experiment_id": "S0_fixed_top20_baseline", "strategy": "fixed_k", "k": 20},
+    {"experiment_id": "f1_champion_fixed_k2", "strategy": "fixed_k", "k": 2},
+    {"experiment_id": "balanced_champion_fixed_k8", "strategy": "fixed_k", "k": 8},
+    {"experiment_id": "best_low_cost_llm_threshold_090", "strategy": "llm_threshold", "threshold": 0.9}
+  ],
+  "prohibitions": [
+    "No threshold or K change after reading validation30 results",
+    "No query-specific patch",
+    "No validation30 training or calibration"
+  ]
+}

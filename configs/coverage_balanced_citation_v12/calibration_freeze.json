@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "source_commit": "95d0426d365ec4425bb15b9d357c7fa9282ced91",
+  "prompt_schema": "qcf-v12-balanced-1",
+  "chosen": {
+    "configuration": "all_lanes",
+    "lanes": "reverse_query|reverse_contract|forward_reference|forward_related",
+    "baseline_candidate_TP": 27,
+    "candidate_TP": 32,
+    "candidate_FP": 14713,
+    "candidate_FN": 48,
+    "candidate_recall": 0.39464285714285713,
+    "candidate_gain": 5,
+    "frontier_TP": 14,
+    "frontier_FP": 10697,
+    "frontier_precision": 0.0011650889898829264,
+    "mean_frontier_count": 267.775,
+    "api_per_query": 4.0,
+    "elapsed_seconds_per_query": 9.223405457502668
+  },
+  "lanes": [
+    "reverse_query",
+    "reverse_contract",
+    "forward_reference",
+    "forward_related"
+  ],
+  "calibration_gate_passed": true,
+  "dev_evaluated": false
+}

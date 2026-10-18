@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>研寻 AI · 首页配色对比</title>
+  <style>
+    * { box-sizing:border-box; }
+    body { margin:0; padding:36px; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif; color:#262932; background:#f2f3f6; }
+    main { max-width:1600px; margin:auto; }
+    header { display:flex; justify-content:space-between; align-items:end; gap:24px; margin-bottom:26px; }
+    h1 { margin:0 0 9px; font-size:27px; letter-spacing:-.5px; }
+    header p { margin:0; color:#777d8b; font-size:14px; }
+    header a { color:#626977; font-size:13px; text-decoration:none; white-space:nowrap; }
+    .grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px; }
+    .theme { display:block; overflow:hidden; border:1px solid #e1e3e9; border-radius:16px; background:#fff; color:inherit; text-decoration:none; box-shadow:0 5px 20px #242d4010; transition:transform .15s,box-shadow .15s; }
+    .theme:hover { transform:translateY(-3px); box-shadow:0 9px 26px #242d401b; }
+    .theme:focus-visible { outline:3px solid #7386b2; outline-offset:4px; }
+    .theme img { display:block; width:100%; aspect-ratio:16/10; object-fit:cover; border-bottom:1px solid #eef0f4; }
+    .caption { padding:17px 18px 19px; }
+    .name { display:flex; align-items:center; gap:8px; font-size:16px; font-weight:650; }
+    .number { font-size:12px; color:#9298a4; margin-right:3px; }
+    .dot { width:9px; height:9px; border-radius:50%; background:var(--color); }
+    .desc { margin:7px 0 0; font-size:12px; color:#828794; }
+    .arrow { margin-left:auto; color:#9aa0ab; font-size:18px; font-weight:400; }
+    .note { display:flex; flex-direction:column; justify-content:center; align-items:flex-start; padding:32px; color:#6f7787; }
+    .note strong { color:#424957; font-size:19px; line-height:1.8; }
+    .note p { margin:12px 0 0; font-size:14px; line-height:1.9; }
+    @media (max-width:1250px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div><h1>同一个首页，五种配色</h1><p>点击任意版本，打开实际可用的检索首页。</p></div>
+      <a href="/">返回当前首页 ↗</a>
+    </header>
+    <!-- 缩略图来自真实首页截图；链接仍指向同一套检索页面。 -->
+    <div class="grid">
+      <a class="theme" href="/?theme=lilac" target="_blank" rel="noopener" style="--color:#8050db">
+        <img src="/frontend/theme-previews/lilac.png" alt="浅紫主题首页预览" />
+        <div class="caption"><div class="name"><span class="number">01</span><span class="dot"></span>轻雾紫<span class="arrow">↗</span></div><p class="desc">柔和紫色与浅色光晕</p></div>
+      </a>
+      <a class="theme" href="/?theme=sky" target="_blank" rel="noopener" style="--color:#3478ed">
+        <img src="/frontend/theme-previews/sky.png" alt="晴空蓝主题首页预览" />
+        <div class="caption"><div class="name"><span class="number">02</span><span class="dot"></span>晴空蓝<span class="arrow">↗</span></div><p class="desc">已选定 · 明亮清爽的蓝白配色</p></div>
+      </a>
+      <a class="theme" href="/?theme=mint" target="_blank" rel="noopener" style="--color:#159b85">
+        <img src="/frontend/theme-previews/mint.png" alt="薄荷绿主题首页预览" />
+        <div class="caption"><div class="name"><span class="number">03</span><span class="dot"></span>薄荷绿<span class="arrow">↗</span></div><p class="desc">轻盈自然 · 薄荷绿与青白背景</p></div>
+      </a>
+      <a class="theme" href="/?theme=peach" target="_blank" rel="noopener" style="--color:#e26d52">
+        <img src="/frontend/theme-previews/peach.png" alt="蜜桃橙主题首页预览" />
+        <div class="caption"><div class="name"><span class="number">04</span><span class="dot"></span>蜜桃橙<span class="arrow">↗</span></div><p class="desc">温暖活泼 · 珊瑚橙与暖白背景</p></div>
+      </a>
+      <a class="theme" href="/?theme=ink" target="_blank" rel="noopener" style="--color:#2e3036">
+        <img src="/frontend/theme-previews/ink.png" alt="极简黑白主题首页预览" />
+        <div class="caption"><div class="name"><span class="number">05</span><span class="dot"></span>极简黑白<span class="arrow">↗</span></div><p class="desc">克制干净 · 中性色与黑色发送键</p></div>
+      </a>
+      <div class="note"><strong>当前配色：晴空蓝。</strong><p>五个版本的布局与功能相同。<br />点击卡片仍可预览其他配色。</p></div>
+    </div>
+  </main>
+</body>
+</html>

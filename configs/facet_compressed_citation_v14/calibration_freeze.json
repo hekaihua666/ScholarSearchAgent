@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "source_commit": "320204bf9a0c5625d468e72bd84c4df0b914c027",
+  "prompt_schema": "fc-gqcf-v14-1",
+  "chosen": {
+    "configuration": "grouped_plus_forward",
+    "lanes": "reverse_group_1|reverse_group_2|reverse_group_3|reverse_group_4|forward_reference",
+    "baseline_candidate_TP": 27,
+    "candidate_TP": 40,
+    "candidate_FP": 14080,
+    "candidate_FN": 40,
+    "candidate_recall": 0.4851190476190476,
+    "candidate_gain": 13,
+    "frontier_TP": 26,
+    "frontier_FP": 10282,
+    "frontier_precision": 0.0035537393400388593,
+    "mean_frontier_count": 257.7,
+    "api_per_query": 5.0,
+    "elapsed_seconds_per_query": 11.243934245001583
+  },
+  "lanes": [
+    "reverse_group_1",
+    "reverse_group_2",
+    "reverse_group_3",
+    "reverse_group_4",
+    "forward_reference"
+  ],
+  "calibration_gate_passed": true,
+  "dev_evaluated": false
+}

@@ -1,0 +1,470 @@
+{
+  "schema_version": 1,
+  "schema": "aber-v19-atomic-condition-bottleneck-1",
+  "source_commit": "b36dcda0c513e29977b60d62000f48d6500d648e",
+  "baseline_top20": {
+    "precision": 0.028750000000000005,
+    "recall": 0.30505952380952384,
+    "f1": 0.05113661499531065,
+    "TP": 23,
+    "FP": 775,
+    "FN": 57,
+    "predicted": 798,
+    "gold": 80,
+    "mean_output_count": 19.95
+  },
+  "reg_v18": {
+    "configuration": "REG_v18",
+    "precision": 0.035,
+    "recall": 0.36279761904761904,
+    "f1": 0.06198997258779867,
+    "TP": 28,
+    "FP": 770,
+    "FN": 52,
+    "predicted": 798,
+    "gold": 80,
+    "mean_output_count": 19.95,
+    "top20_gain": 5,
+    "top20_lost": 0,
+    "actions": 39
+  },
+  "chosen": {
+    "configuration": "bottleneck_trace",
+    "weights": "0.35/0.15/0.1/0.1/0.15/0.1/0.05",
+    "score_floor": 0.74,
+    "margin": 0.1,
+    "minimum_delta": 0.0,
+    "dominance_required": 4,
+    "top20_TP": 24,
+    "top20_FP": 774,
+    "top20_recall": 0.3113095238095238,
+    "top20_f1": 0.05321994832864398,
+    "top20_gain": 1,
+    "top20_lost": 0,
+    "actions": 37,
+    "action_precision": 0.02702702702702703,
+    "fold_gain": "1/0/0/0",
+    "fold_lost": "0/0/0/0",
+    "gain_folds": 1
+  },
+  "weights": [
+    0.35,
+    0.15,
+    0.1,
+    0.1,
+    0.15,
+    0.1,
+    0.05
+  ],
+  "calibration_gate_passed": false,
+  "dev_evaluated": false,
+  "manifest": {
+    "schema": "aber-v19-atomic-condition-bottleneck-1",
+    "split": "calibration",
+    "query_count": 40,
+    "source_commit": "b36dcda0c513e29977b60d62000f48d6500d648e",
+    "wall_seconds": 0.5534157999791205,
+    "queries": [
+      {
+        "query_id": "AutoScholarQuery_test_61",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8660412000026554
+      },
+      {
+        "query_id": "AutoScholarQuery_test_63",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.34417590001248755
+      },
+      {
+        "query_id": "AutoScholarQuery_test_67",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.941721300012432
+      },
+      {
+        "query_id": "AutoScholarQuery_test_73",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.4612870999844745
+      },
+      {
+        "query_id": "AutoScholarQuery_test_94",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 104,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.5863196999998763
+      },
+      {
+        "query_id": "AutoScholarQuery_test_134",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8554663999821059
+      },
+      {
+        "query_id": "AutoScholarQuery_test_137",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.2746886000095401
+      },
+      {
+        "query_id": "AutoScholarQuery_test_138",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.0524322999990545
+      },
+      {
+        "query_id": "AutoScholarQuery_test_143",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.0502332999894861
+      },
+      {
+        "query_id": "AutoScholarQuery_test_184",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.9980221999867354
+      },
+      {
+        "query_id": "AutoScholarQuery_test_196",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.851177300006384
+      },
+      {
+        "query_id": "AutoScholarQuery_test_221",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.2980785999970976
+      },
+      {
+        "query_id": "AutoScholarQuery_test_222",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.146449699997902
+      },
+      {
+        "query_id": "AutoScholarQuery_test_238",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.7166069000086281
+      },
+      {
+        "query_id": "AutoScholarQuery_test_261",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.6631559999950696
+      },
+      {
+        "query_id": "AutoScholarQuery_test_291",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8208829000068363
+      },
+      {
+        "query_id": "AutoScholarQuery_test_310",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.35415679999277927
+      },
+      {
+        "query_id": "AutoScholarQuery_test_314",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.2317092000157572
+      },
+      {
+        "query_id": "AutoScholarQuery_test_336",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8325606000144035
+      },
+      {
+        "query_id": "AutoScholarQuery_test_343",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.27822869998635724
+      },
+      {
+        "query_id": "AutoScholarQuery_test_446",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.1539935000182595
+      },
+      {
+        "query_id": "AutoScholarQuery_test_456",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 104,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.5314849999849685
+      },
+      {
+        "query_id": "AutoScholarQuery_test_482",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.28860359999816865
+      },
+      {
+        "query_id": "AutoScholarQuery_test_484",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8302973000099882
+      },
+      {
+        "query_id": "AutoScholarQuery_test_487",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 104,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.6383973000047263
+      },
+      {
+        "query_id": "AutoScholarQuery_test_528",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.38820330001181
+      },
+      {
+        "query_id": "AutoScholarQuery_test_610",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.42747279998729937
+      },
+      {
+        "query_id": "AutoScholarQuery_test_621",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.9107255999988411
+      },
+      {
+        "query_id": "AutoScholarQuery_test_641",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 104,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.5201521000126377
+      },
+      {
+        "query_id": "AutoScholarQuery_test_651",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8722790000028908
+      },
+      {
+        "query_id": "AutoScholarQuery_test_660",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.3048275000182912
+      },
+      {
+        "query_id": "AutoScholarQuery_test_694",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8281139000027906
+      },
+      {
+        "query_id": "AutoScholarQuery_test_743",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.7158611000049859
+      },
+      {
+        "query_id": "AutoScholarQuery_test_770",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.8137418999976944
+      },
+      {
+        "query_id": "AutoScholarQuery_test_797",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 2,
+        "pair_count": 156,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.7630403999937698
+      },
+      {
+        "query_id": "AutoScholarQuery_test_801",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 52,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.30297789999167435
+      },
+      {
+        "query_id": "AutoScholarQuery_test_831",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 104,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.5307049000111874
+      },
+      {
+        "query_id": "AutoScholarQuery_test_834",
+        "incumbent_count": 18,
+        "frontier_count": 32,
+        "condition_views": 1,
+        "pair_count": 100,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 0.5090890999999829
+      },
+      {
+        "query_id": "AutoScholarQuery_test_905",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.0511428999889176
+      },
+      {
+        "query_id": "AutoScholarQuery_test_943",
+        "incumbent_count": 20,
+        "frontier_count": 32,
+        "condition_views": 3,
+        "pair_count": 208,
+        "runtime": "cross_encoder_cpu",
+        "cache_hits": 0,
+        "elapsed_seconds": 1.390677899995353
+      }
+    ]
+  }
+}

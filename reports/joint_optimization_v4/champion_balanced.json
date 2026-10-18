@@ -1,0 +1,23 @@
+{
+  "selector": "S0_current_Top20",
+  "decision": "fixed_top20",
+  "threshold": "",
+  "recall_floor": 0.35,
+  "recall_floor_met": false,
+  "calibration_protocol": "5-fold query-grouped OOF over frozen production50",
+  "calibration_metrics": {
+    "precision": 0.03,
+    "recall": 0.324714,
+    "f1": 0.05256,
+    "mean_output_count": 20.0,
+    "mean_tp": 0.6
+  },
+  "dev_metrics": {
+    "precision": 0.047895,
+    "recall": 0.40631,
+    "f1": 0.081429,
+    "mean_output_count": 19.95,
+    "mean_tp": 0.95
+  },
+  "feature_names": []
+}

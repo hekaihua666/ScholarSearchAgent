@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title">
+  <title id="title">研印：几何化研字与智能星光</title>
+  <!-- 手工几何笔画构成研字，不依赖用户电脑是否安装特定字体。 -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="#E8F1FF"/>
+  <g stroke="#3478ED" stroke-width="4.2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M11 20h16M19 20l-8 16M15 32h11v16H15V32Z"/>
+    <path d="M33 20h12M30 32h21M36 20v18c0 5-1 8-5 12M46 24v26"/>
+  </g>
+  <path d="m51 8 2.1 5.9L59 16l-5.9 2.1L51 24l-2.1-5.9L43 16l5.9-2.1L51 8Z" fill="#3478ED"/>
+</svg>

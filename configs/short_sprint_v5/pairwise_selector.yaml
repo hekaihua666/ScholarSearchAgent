@@ -1,0 +1,12 @@
+schema_version: 1
+profile: short_sprint_v5
+model: pointwise
+model_path: D:/AICompetition/ScholarSearchAgent/artifacts/short_sprint_v5/pairwise_selector.pkl
+fusion_weights:
+  pairwise: 0.200
+  llm: 0.400
+  trace: 0.400
+set_decision: global_threshold
+set_params: {"threshold": 0.4000000000000001}
+max_results: 6
+product_min_k: 1

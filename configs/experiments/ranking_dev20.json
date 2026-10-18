@@ -1,0 +1,16 @@
+[
+  {"experiment_id":"rank_000_current_mmr88","hypothesis":"Current deterministic TRACE+MMR parent","selection":"mmr","mmr_lambda":0.88},
+  {"experiment_id":"rank_001_no_mmr","hypothesis":"MMR may remove genuinely related papers","selection":"none"},
+  {"experiment_id":"rank_002_mmr94","hypothesis":"A lighter diversity penalty may preserve gold","selection":"mmr","mmr_lambda":0.94},
+  {"experiment_id":"rank_003_mmr97","hypothesis":"A very light diversity penalty may preserve relevance while deduplicating","selection":"mmr","mmr_lambda":0.97},
+  {"experiment_id":"rank_004_top10_locked","hypothesis":"Protect Top10 relevance and diversify only the tail","selection":"mmr","mmr_lambda":0.92,"locked_prefix":10},
+  {"experiment_id":"rank_005_near_duplicate_only","hypothesis":"Penalize only highly similar candidates rather than topic diversity","selection":"mmr","mmr_lambda":0.88,"redundancy_threshold":0.55},
+  {"experiment_id":"rank_006_no_authority","hypothesis":"Citation impact may displace query-relevant gold","selection":"mmr","mmr_lambda":0.88,"weights":{"authority":0.0}},
+  {"experiment_id":"rank_007_no_freshness","hypothesis":"Recency may hurt non-frontier queries","selection":"mmr","mmr_lambda":0.88,"weights":{"freshness":0.0}},
+  {"experiment_id":"rank_008_no_metadata","hypothesis":"Metadata completeness may reward irrelevant well-indexed papers","selection":"mmr","mmr_lambda":0.88,"weights":{"metadata":0.0}},
+  {"experiment_id":"rank_009_no_semantic_provenance","hypothesis":"Semantic provenance may over-reward broad semantic neighbors","selection":"mmr","mmr_lambda":0.88,"weights":{"semantic":0.0}},
+  {"experiment_id":"rank_010_no_hypothesis","hypothesis":"Generated title hypotheses may introduce hallucinated direction bias","selection":"mmr","mmr_lambda":0.88,"weights":{"hypothesis":0.0}},
+  {"experiment_id":"rank_011_no_citation_provenance","hypothesis":"Citation expansion provenance may reward noisy neighbors","selection":"mmr","mmr_lambda":0.88,"weights":{"citation_provenance":0.0}},
+  {"experiment_id":"rank_012_coverage_boost","hypothesis":"Harder constraint coverage may recover complex-query gold","selection":"mmr","mmr_lambda":0.88,"weights":{"coverage":0.24}},
+  {"experiment_id":"rank_013_lexical_boost","hypothesis":"Stronger lexical and IDF evidence may suppress semantic drift","selection":"mmr","mmr_lambda":0.88,"weights":{"lexical":0.30,"idf":0.23}}
+]

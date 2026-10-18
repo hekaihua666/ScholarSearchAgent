@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "method": "Evidence Contract Rank",
+  "prompt_schema": "ecrank-v9-contract-1",
+  "baseline_cards": 4,
+  "newcomer_cards": 12,
+  "max_cards": 16,
+  "coarse_views": [
+    "TRACE",
+    "facet_bottleneck",
+    "source_rank"
+  ],
+  "score_views": [
+    "point",
+    "list",
+    "condition_support",
+    "relation_support"
+  ],
+  "threshold": 95.0,
+  "margin": 15.0,
+  "max_replacements": 2,
+  "contract_modes": [
+    "per_paper_conjunctive",
+    "set_distributive"
+  ],
+  "status": "calibration_frozen"
+}

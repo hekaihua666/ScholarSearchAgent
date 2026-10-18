@@ -1,0 +1,9 @@
+retrieval_profile: lean
+query_portfolio: false
+semantic_variant: original_query
+independent_arxiv_supplement: false
+title_hypothesis_probe: false
+adaptive_citation: false
+second_round_lexical: true
+second_round_semantic: true
+local_hybrid: false

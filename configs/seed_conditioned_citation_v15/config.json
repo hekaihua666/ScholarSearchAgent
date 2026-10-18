@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "method": "Seed-Conditioned Graph Query",
+  "retrieval_schema": "scgq-v15-1",
+  "topic_source": "query_understanding.research_topic",
+  "seed_title_count": 12,
+  "max_graph_query_terms": 6,
+  "max_seeds": 40,
+  "group_size": 10,
+  "reverse_groups": 4,
+  "per_group": 100,
+  "forward_dependency": "frozen_v11_head_weighted_reference",
+  "production_api_per_query": 5,
+  "new_live_api_per_query": 4
+}

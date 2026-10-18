@@ -1,0 +1,94 @@
+{
+  "schema_version": 1,
+  "branch": "short-sprint-v5",
+  "baseline_commit": "f5bcca3",
+  "dataset_sha256": "ab251558e312d6e3f20f1626381aab1302a94897c640f73cc2e9074f824ce80d",
+  "chosen_model": "pointwise",
+  "fusion_weights": [
+    0.2,
+    0.4,
+    0.4
+  ],
+  "decision": "global_threshold",
+  "decision_params": {
+    "threshold": 0.4000000000000001
+  },
+  "standalone_choices": {
+    "pointwise": {
+      "decision": "global_threshold",
+      "params": {
+        "threshold": 0.7000000000000002
+      },
+      "calibration_metrics": {
+        "precision": 0.3204444444444444,
+        "recall": 0.4107973137973138,
+        "f1": 0.3203374751610046,
+        "TP": 132,
+        "FP": 296,
+        "FN": 254,
+        "mean_output_count": 2.8533333333333335
+      }
+    },
+    "pairwise": {
+      "decision": "fixed_k2",
+      "params": {},
+      "calibration_metrics": {
+        "precision": 0.36333333333333334,
+        "recall": 0.33735286935286934,
+        "f1": 0.31522751322751325,
+        "TP": 109,
+        "FP": 191,
+        "FN": 277,
+        "mean_output_count": 2.0
+      }
+    },
+    "pairwise_mined": {
+      "decision": "fixed_k2",
+      "params": {},
+      "calibration_metrics": {
+        "precision": 0.38,
+        "recall": 0.3697606837606837,
+        "f1": 0.3395767195767196,
+        "TP": 114,
+        "FP": 186,
+        "FN": 272,
+        "mean_output_count": 2.0
+      }
+    }
+  },
+  "calibration_metrics": {
+    "precision": 0.37133333333333335,
+    "recall": 0.38635775335775335,
+    "f1": 0.34275260795849033,
+    "TP": 125,
+    "FP": 329,
+    "FN": 261,
+    "mean_output_count": 3.026666666666667
+  },
+  "dev_metrics": {
+    "configuration": "best_fused_selector",
+    "precision": 0.15166666666666667,
+    "recall": 0.3383333333333333,
+    "f1": 0.1911219336219336,
+    "TP": 16,
+    "FP": 95,
+    "FN": 42,
+    "mean_output_count": 5.55,
+    "mean_tp": 0.8,
+    "query_count": 20
+  },
+  "acceptance": {
+    "A": false,
+    "B": false,
+    "C": false,
+    "D": false,
+    "accepted": false
+  },
+  "development_candidate_v5": false,
+  "blind50_used": false,
+  "validation30_gold_used": false,
+  "artifacts": {
+    "model": "D:\\AICompetition\\ScholarSearchAgent\\artifacts\\short_sprint_v5\\pairwise_selector.pkl",
+    "config": "D:\\AICompetition\\ScholarSearchAgent\\configs\\short_sprint_v5\\pairwise_selector.yaml"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "frozen": true,
+  "retrieval_profile": "lean",
+  "selection_profiles": [
+    "f1",
+    "balanced_set"
+  ],
+  "checksums": {
+    "reports/frozen_eval/query_sets/blind_holdout50_v4_private.jsonl": "5057eb469f962a6e471c09ab430d9bad09ff855019570167b4c2df149fd43d59",
+    "reports/joint_optimization_v4/champion_f1.json": "404c8dea70de87ef07913a2d2b1aca88a1d75ac7f5ecc35934e413e6d09ee3d0",
+    "reports/joint_optimization_v4/champion_balanced.json": "b52e49f8e3c8a250b314adb19aa7ced83f93a0edf13ef759373350fb792c20d5",
+    "reports/joint_optimization_v4/champion_competition.json": "b52e49f8e3c8a250b314adb19aa7ced83f93a0edf13ef759373350fb792c20d5",
+    "reports/joint_optimization_v4/selector_model.pkl": "dc018e9ce0aa54236c2f17c5e11256f82a025ee5562ca84be30767fea14274dd",
+    "configs/joint_v4/retrieval_v3.yaml": "bcb2933f63a531998d3cc1d3338f71cfe34c20e9fd70185555d9f7131ecc1cf4",
+    "configs/joint_v4/retrieval_lean.yaml": "52467a0ef0ffef69d69e12b6805fe446199071af350d7028e9d0cb68cb601575"
+  }
+}

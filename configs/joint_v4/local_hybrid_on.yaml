@@ -1,0 +1,7 @@
+enabled: true
+backend: sqlite_fts5
+fields: [title, abstract, authors, venue]
+candidate_limit: 200
+cutoff_policy: source_meta_minus_7_days
+identity_priority: [arxiv_id, doi, openalex_id, normalized_title]
+status: deferred_until_a_general_licensed_corpus_is_available

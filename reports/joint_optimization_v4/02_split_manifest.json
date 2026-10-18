@@ -1,0 +1,429 @@
+{
+  "query_set": "blind_holdout50_v4",
+  "count": 50,
+  "sampling_seed": 20260831,
+  "dataset": "D:\\AICompetition\\references\\github\\SPAR\\benchmark\\AutoScholarQuery_test.jsonl",
+  "dataset_sha256": "ab251558e312d6e3f20f1626381aab1302a94897c640f73cc2e9074f824ce80d",
+  "private_subset": "D:\\AICompetition\\ScholarSearchAgent\\reports\\frozen_eval\\query_sets\\blind_holdout50_v4_private.jsonl",
+  "private_subset_sha256": "5057eb469f962a6e471c09ab430d9bad09ff855019570167b4c2df149fd43d59",
+  "excluded_sets": [
+    "dev20",
+    "selector_train_500",
+    "selector_calibration_150",
+    "validation30_consumed"
+  ],
+  "excluded_count": 700,
+  "aggregate_gold_strata": {
+    "g3plus": 16,
+    "g2": 8,
+    "g1": 26
+  },
+  "queries": [
+    {
+      "query_id": "AutoScholarQuery_test_595",
+      "query": "Can you provide me studies about decomposing MOCO problems into a series of single-objective combinatorial optimization problems?",
+      "cutoff": "2023-10-15T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_824",
+      "query": "Which papers discussed federated learning in the context of autonomous driving?",
+      "cutoff": "2024-03-25T00:00:00",
+      "intent": "broad",
+      "query_length": 6,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_90",
+      "query": "Which works explored the theoretical analysis of the NTK spectrum via random matrix theory?",
+      "cutoff": "2022-11-08T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_893",
+      "query": "Which studies focused on using synthetic data to create new datasets or augment existing ones?",
+      "cutoff": "2023-07-12T00:00:00",
+      "intent": "broad",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 2
+    },
+    {
+      "query_id": "AutoScholarQuery_test_906",
+      "query": "Which works have been done on representation learning on hypergraphs?",
+      "cutoff": "2023-06-12T00:00:00",
+      "intent": "broad",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_790",
+      "query": "Which work introduced the notion of (ρ,μ)-competitiveness?",
+      "cutoff": "2022-09-29T00:00:00",
+      "intent": "foundation",
+      "query_length": 3,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_409",
+      "query": "What research observed the detrimental effect of adding irrelevant noise to the context on model performance?",
+      "cutoff": "2024-05-24T00:00:00",
+      "intent": "broad",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_650",
+      "query": "Which research papers explored the implementation of state space models-based architectures?",
+      "cutoff": "2023-11-23T00:00:00",
+      "intent": "broad",
+      "query_length": 6,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_306",
+      "query": "What papers studied unbalanced optimal transport (UOT) using methods that estimate UOT potentials on discrete space?",
+      "cutoff": "2023-05-17T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 2
+    },
+    {
+      "query_id": "AutoScholarQuery_test_155",
+      "query": "Which works combine external knowledge from KGs into LLMs during the prompting stage?",
+      "cutoff": "2024-06-07T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_162",
+      "query": "Can you provide existing research that used contrastive methods in representation learning?",
+      "cutoff": "2023-09-26T00:00:00",
+      "intent": "broad",
+      "query_length": 8,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_830",
+      "query": "Which papers proposed a multi-stage language model for TTS with phonemes as input and acoustic tokens as output?",
+      "cutoff": "2024-05-27T00:00:00",
+      "intent": "broad",
+      "query_length": 11,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_742",
+      "query": "What work proposed the eNCE method and identified its limitations?",
+      "cutoff": "2023-06-06T00:00:00",
+      "intent": "broad",
+      "query_length": 6,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_154",
+      "query": "What papers studied the construction of diffusion models for discrete categorical data using a categorical noise process?",
+      "cutoff": "2023-05-24T00:00:00",
+      "intent": "broad",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_447",
+      "query": "What research introduced methods that adapt the training procedure of the classifier itself?",
+      "cutoff": "2023-02-03T00:00:00",
+      "intent": "foundation",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_415",
+      "query": "Which paper is about the Transformers architecture that most recent large language models (LLM) are based on?",
+      "cutoff": "2024-02-01T00:00:00",
+      "intent": "frontier",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_234",
+      "query": "Could you provide me some research that demonstrated zero-shot cross-lingual transfer?",
+      "cutoff": "2024-05-27T00:00:00",
+      "intent": "broad",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_262",
+      "query": "What works made advancements in achieving certified robustness with state-of-the-art randomized ablation?",
+      "cutoff": "2024-03-21T00:00:00",
+      "intent": "broad",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_23",
+      "query": "Which work first demonstrated the possibility of reconstructing accurate 3D full-body motion using only six IMUs?",
+      "cutoff": "2024-02-28T00:00:00",
+      "intent": "foundation",
+      "query_length": 11,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_307",
+      "query": "What works used open-loop imitation learning for predicting the behavior of the ego vehicle in autonomous driving?",
+      "cutoff": "2023-10-05T00:00:00",
+      "intent": "broad",
+      "query_length": 11,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_774",
+      "query": "What research introduces competition-level problems integrating mathematical logic and background knowledge?",
+      "cutoff": "2024-02-14T00:00:00",
+      "intent": "broad",
+      "query_length": 8,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_705",
+      "query": "Which papers introduced algorithms regarding distributed optimization in a full participation setting using deterministic methods?",
+      "cutoff": "2023-04-08T00:00:00",
+      "intent": "foundation",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 2
+    },
+    {
+      "query_id": "AutoScholarQuery_test_635",
+      "query": "Which paper first tackled the pose estimation of novel objects without CAD models using RGB images?",
+      "cutoff": "2023-11-24T00:00:00",
+      "intent": "foundation",
+      "query_length": 11,
+      "hard_constraint_count_proxy": 3
+    },
+    {
+      "query_id": "AutoScholarQuery_test_389",
+      "query": "Which studies first used CLIP to optimize an underlying 3D representation in text-guided 3D generation?",
+      "cutoff": "2023-05-14T00:00:00",
+      "intent": "foundation",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_537",
+      "query": "Which papers demonstrate that language models can map conceptual domains onto grounded world representations?",
+      "cutoff": "2022-10-17T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_550",
+      "query": "What research papers utilized the embedding-based metrics which make use of PLM embeddings like BERT?",
+      "cutoff": "2024-02-17T00:00:00",
+      "intent": "broad",
+      "query_length": 8,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_716",
+      "query": "What papers recently gave attention to maximum entropy policies in the context of reinforcement learning (RL)?",
+      "cutoff": "2023-05-29T00:00:00",
+      "intent": "frontier",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_695",
+      "query": "Any works about continual pretraining for encoder-decoder LMs?",
+      "cutoff": "2023-06-08T00:00:00",
+      "intent": "broad",
+      "query_length": 5,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_451",
+      "query": "What are some representative works about graph embedding-based methods?",
+      "cutoff": "2023-05-15T00:00:00",
+      "intent": "broad",
+      "query_length": 5,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_269",
+      "query": "What studies removed the strong assumptions about knowledge of non-stationarity in non-contextual bandits?",
+      "cutoff": "2023-07-04T00:00:00",
+      "intent": "broad",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_41",
+      "query": "What are the papers that analyze the limitations of simple random walks on the clique expansion of the hypergraph?",
+      "cutoff": "2023-06-12T00:00:00",
+      "intent": "broad",
+      "query_length": 8,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_983",
+      "query": "Can you list the research that introduced the Mirror Descent Policy Optimization?",
+      "cutoff": "2023-01-23T00:00:00",
+      "intent": "foundation",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_675",
+      "query": "What papers provided a theoratical analysis of the mechanism with respect to mean squared error of the noise?",
+      "cutoff": "2023-06-09T00:00:00",
+      "intent": "broad",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_466",
+      "query": "Which study introduced a metric based on the sample influence score of the optimal empirical risk in CoreSet selection?",
+      "cutoff": "2023-11-29T00:00:00",
+      "intent": "foundation",
+      "query_length": 11,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_399",
+      "query": "Are there any studies using a sequence-encoding VQ-VAE to learn the discrete codebook of listener motion?",
+      "cutoff": "2024-02-23T00:00:00",
+      "intent": "broad",
+      "query_length": 8,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_885",
+      "query": "Any work discusses unigram similarity metrics related to the downstream performance?",
+      "cutoff": "2023-01-30T00:00:00",
+      "intent": "broad",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_714",
+      "query": "Which papers discuss the two mainstream approaches for multi-hop KGQA: Semantic Parsing and Information Retrieval?",
+      "cutoff": "2023-10-17T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_569",
+      "query": "What works have explored the field of zero-shot segmentation recently?",
+      "cutoff": "2023-08-16T00:00:00",
+      "intent": "frontier",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_98",
+      "query": "What works present operators of tensor decomposition composed of fast Fourier / trigonometric transforms?",
+      "cutoff": "2023-01-22T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_919",
+      "query": "Who first explored the food bank problem in the context of additive valuations?",
+      "cutoff": "2023-08-21T00:00:00",
+      "intent": "foundation",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_937",
+      "query": "Which papers provide a comprehensive overview of transfer learning?",
+      "cutoff": "2023-03-16T00:00:00",
+      "intent": "survey",
+      "query_length": 5,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_465",
+      "query": "Which paper first introduced the concept of fully unsupervised anomaly detection?",
+      "cutoff": "2024-03-25T00:00:00",
+      "intent": "foundation",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_223",
+      "query": "What works establish the first connection between replicability and differential privacy in the context of PAC learning?",
+      "cutoff": "2023-05-16T00:00:00",
+      "intent": "foundation",
+      "query_length": 11,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_443",
+      "query": "What is the first work that proposed a question-answering dataset that requires the model to perform counterfactual reasoning?",
+      "cutoff": "2023-10-03T00:00:00",
+      "intent": "foundation",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_908",
+      "query": "Could you provide me some examples of works that introduced a parallel iterative routing?",
+      "cutoff": "2024-03-13T00:00:00",
+      "intent": "foundation",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_697",
+      "query": "Which works have investigated the advantages of decoupling policy and value functions for generalization in RL?",
+      "cutoff": "2023-05-29T00:00:00",
+      "intent": "broad",
+      "query_length": 10,
+      "hard_constraint_count_proxy": 0
+    },
+    {
+      "query_id": "AutoScholarQuery_test_769",
+      "query": "Can you name the studies that looked at CVaR optimization using PG?",
+      "cutoff": "2023-01-19T00:00:00",
+      "intent": "broad",
+      "query_length": 7,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_112",
+      "query": "Which paper introduced the method known as CoT prompting?",
+      "cutoff": "2023-11-06T00:00:00",
+      "intent": "foundation",
+      "query_length": 6,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_712",
+      "query": "Can you specify some multimodal pretraining methods that require paired or interleaved data?",
+      "cutoff": "2024-01-18T00:00:00",
+      "intent": "broad",
+      "query_length": 9,
+      "hard_constraint_count_proxy": 1
+    },
+    {
+      "query_id": "AutoScholarQuery_test_896",
+      "query": "Which study formally introduced reward-free exploration for tabular MDP?",
+      "cutoff": "2022-06-21T00:00:00",
+      "intent": "foundation",
+      "query_length": 6,
+      "hard_constraint_count_proxy": 0
+    }
+  ],
+  "overlap_checks": {
+    "dev20": 0,
+    "validation30": 0,
+    "selector_train": 0,
+    "selector_calibration": 0
+  }
+}

@@ -1,0 +1,149 @@
+﻿% !TeX program = xelatex
+\documentclass[a4paper,11pt]{ctexart}
+\usepackage[a4paper,margin=2.25cm]{geometry}
+\usepackage{booktabs,tabularx,array,amsmath,amssymb,graphicx,xcolor,hyperref}
+\usepackage{setspace,enumitem,fancyhdr}
+\hypersetup{hidelinks}
+\onehalfspacing
+\setlength{\parindent}{2em}
+\setlength{\headheight}{14pt}
+\pagestyle{fancy}\fancyhf{}\fancyhead[L]{研问智搜}\fancyhead[R]{论文修订稿 V2.0}\fancyfoot[C]{\thepage}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\metric}[1]{\textbf{#1}}
+
+\title{研问智搜：面向复杂科研问题的可复现多源论文检索与成本感知控制}
+\author{虫虫特工队}
+\date{2026年8月30日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+复杂科研问题通常同时包含主题、方法、应用领域和时间等约束，单次关键词检索难以兼顾覆盖率、排序质量与调用成本。本文实现研问智搜，一个无需训练的多源学术检索系统。系统首先将自然语言问题解析为结构化约束和多条检索式，再融合 OpenAlex 词项检索与语义检索、arXiv、Crossref、Semantic Scholar、标题探测、引文扩展和第二轮检索，并通过 TRACE-Rank 完成多路径融合、约束覆盖评分和多样性重排。为使实验可核查，系统实现稳定论文身份匹配、严格日期截断以及 LIVE--FROZEN--REPLAY 评测链路。我们进一步实现 HELIOS-Lite：一个训练无关、基于约束缺口、候选漂移与调用成本选择扩展或停止动作的控制器。在修复 arXiv 日期查询后的 AutoScholarQuery dev20 上，均衡模式取得 Recall@20=0.3858、F1@20=0.0769、NDCG@20=0.3204；在与开发集不重叠的 validation30 上取得 Recall@20=0.4987、F1@20=0.0895、NDCG@20=0.3531。低成本模式减少 38.9\% 的 API 调用，但 Recall@20 降至 0.4345。HELIOS-Lite 在该验证集上没有形成质量提升，因此本文将其界定为已实现且可消融的控制机制，而非已证实的领先算法。实验表明，当前主要瓶颈仍是候选召回；语义检索和标题探测贡献稳定，引文与第二轮检索能够增加候选相关论文，但其噪声需要更强的统一重排来消化。
+\end{abstract}
+
+\noindent\textbf{关键词：} 学术检索；检索增强智能体；多源融合；可复现评测；成本感知；论文推荐
+
+\section{引言}
+文献检索决定了科研调研的证据边界。真实用户往往提出完整问题，而不是孤立关键词，例如同时限定研究主题、方法、任务和发表时间。传统搜索引擎可以快速返回大量结果，却把查询拆解、同义改写、重复筛除和结果核验留给用户。对于细粒度查询，缺失任一约束都可能导致结果表面相关而实际不可用。
+
+大语言模型驱动的论文搜索智能体把查询理解、工具调用、论文筛选和多轮扩展纳入同一流程。PaSa 使用经强化学习优化的搜索与选择智能体处理复杂查询；SPAR 通过查询分解、查询演化和引文探索扩大候选覆盖。这些工作说明，多轮决策可以改善复杂文献检索，但训练成本、外部服务依赖和评测可复现性仍限制其在普通设备和竞赛现场的部署。
+
+研问智搜面向这一工程缺口：它不训练新的检索模型，而是组合公开学术 API、结构化查询规划、稳定身份匹配和冻结回放。系统的研究问题不是“通道越多是否越好”，而是：哪些通道真正带来边际相关论文，相关论文在哪一阶段丢失，以及扩展动作的收益是否足以覆盖噪声和成本。
+
+本文贡献限于当前实验能够支持的范围：
+\begin{enumerate}[leftmargin=2em]
+  \item 实现一个端到端多源论文检索系统，并用 TRACE-Rank 将通道融合、约束覆盖、权威性和时间因素纳入统一排序；
+  \item 建立包含稳定 ID 匹配、官方日期截断、不可变快照和确定性回放的评测链路，使失分能够分解到召回、过滤、排序和匹配阶段；
+  \item 实现训练无关的 HELIOS-Lite 控制器及动作消融，并同时报告其有效部分与验证失败；
+  \item 在 dev20 与独立 validation30 上报告质量、成本、通道边际收益和失败模式，避免仅以单一平均值描述系统。
+\end{enumerate}
+
+\section{相关工作与项目定位}
+\subsection{多阶段学术检索}
+现有智能学术检索通常包含查询改写、检索、论文筛选和证据组织。PaSa 强调自主工具调用和逐篇选择，SPAR 强调 RefChain 式分解与查询演化，ScholarQA 强调多文档证据检索与带出处的报告生成。研问智搜不复现这些系统的训练过程，而是吸收其多阶段结构，在公开 API 条件下重点解决可运行、可诊断与可回放问题。
+
+\subsection{评测与身份匹配}
+known-item 评测要求判断返回论文是否属于给定相关集合。仅用标题完全相等会把版本号、标点或来源差异误判为未召回。本系统按 DOI、arXiv ID、OpenAlex ID、Semantic Scholar ID 和标准化标题的顺序匹配，并将“已经召回但身份匹配失败”与“检索阶段未找到”分开统计。所有在线检索均使用来源记录时间减七天作为截止日期，截止日之后的论文不得进入候选、扩展和排序。
+
+\section{方法}
+\subsection{任务定义}
+给定自然语言查询 $q$、截止日期 $t$ 和最多返回数量 $K$，系统从多个外部学术源构造候选集合 $C$，输出排序列表 $L_K\subseteq C$。系统仅使用查询文本及在线可获得的论文元数据；gold 标题、标识符和参考文献不进入查询生成、动作选择或排序。
+
+\subsection{查询规划与多源召回}
+查询理解模块抽取研究主题、方法约束、领域约束、时间条件和意图类型，并生成多条第一轮查询。均衡模式依次保留以下累积通道：OpenAlex lexical、OpenAlex semantic、arXiv、标题探测、引文扩展和第二轮检索。每个通道均保留独立来源标签和调用统计，为后续消融提供可追踪输入。
+
+\subsection{TRACE-Rank}
+不同通道返回的原始分数不可直接比较。TRACE-Rank 先用倒数排名融合形成路径分数，再加入查询语义、约束覆盖、引用影响和新近性，并对来源一致性进行饱和处理。论文 $p$ 的基础得分写为
+\begin{equation}
+s(p,q)=w_r s_{\mathrm{rrf}}+w_s s_{\mathrm{sem}}+w_c s_{\mathrm{cov}}+w_a s_{\mathrm{auth}}+w_t s_{\mathrm{time}}.
+\end{equation}
+随后使用最大边际相关性在相关性与列表多样性之间折中。最终 LLM rerank 只处理候选短名单；LLM 不可用时系统回退到确定性 TRACE 排序。
+
+\subsection{HELIOS-Lite 控制器}
+HELIOS-Lite 的状态包括查询意图、硬约束、覆盖向量、高置信种子、已执行动作、通道候选数、重复率、漂移估计、剩余 API/LLM 预算和连续无增益次数。控制器可选择引文扩展、第二轮检索或停止；实现中还预留语义检索、arXiv、标题探测和基于种子的推荐动作。
+
+动作 $a$ 的预测效用为
+\begin{equation}
+U(a)=\alpha \widehat{G}_{\mathrm{rel}}+\beta \widehat{G}_{\mathrm{gap}}
+-\gamma \widehat{D}_{\mathrm{dup}}-\delta \widehat{D}_{\mathrm{drift}}
+-\lambda C_{\mathrm{latency}}-\mu C_{\mathrm{api}},
+\end{equation}
+其中各量仅由在线候选统计和开发集聚合先验估计，不读取验证集 gold。若所有动作的预测效用不为正，则选择停止。候选准入门根据相关性、约束覆盖和漂移过滤新增候选，并输出逐步决策轨迹。
+
+\subsection{冻结评测}
+LIVE 阶段记录每次外部 API 与 LLM 响应、日期过滤统计和错误；FROZEN 阶段将快照设为不可变输入；REPLAY 阶段在不访问网络的条件下重放。manifest 保存数据集哈希、代码版本、配置、查询数、日期合法性和结果哈希。该设计用于区分算法变化与外部索引、网络或 LLM 随机性造成的变化。
+
+\section{实验}
+\subsection{数据与指标}
+dev20 为修复 arXiv 日期下界后的 20 条 AutoScholarQuery 固定开发查询。validation30 使用固定种子 20260830 从同一基准构造，与 dev20 不重叠，并在配置冻结后只做最终聚合判断。指标报告宏平均 Precision、Recall、F1 和 NDCG@20，同时记录 micro true positive、候选召回、API 调用和外部错误。
+
+\subsection{完整 dev20 基线}
+\begin{table}[ht]
+\centering\caption{修复后 dev20 均衡模式结果（20 条，含 LLM rerank）}
+\begin{tabular}{lrrrr}\toprule
+$K$ & Precision & Recall & F1 & NDCG\\\midrule
+5  & 0.1000 & 0.2833 & 0.1339 & 0.2726\\
+10 & 0.0850 & 0.3733 & 0.1281 & 0.3152\\
+20 & 0.0450 & 0.3858 & 0.0769 & 0.3204\\\bottomrule
+\end{tabular}
+\end{table}
+
+dev20 共包含 58 篇 gold。完整候选池命中 21 篇，最终 Top20 命中 18 篇，因此未进入最终结果的 40 篇中，37 篇属于检索缺口，3 篇属于候选存在但排序未进入 Top20。该分解表明当前第一瓶颈仍是 retrieval，而不是身份匹配或最终重排。
+
+\subsection{通道边际收益}
+\begin{table}[ht]
+\centering\caption{validation30 均衡快照上的累积候选 gold}
+\begin{tabular}{lrr}\toprule
+累积通道 & 候选 gold & 相对前级增量\\\midrule
+OpenAlex lexical & 16 & +16\\
++ semantic & 27 & +11\\
++ arXiv & 28 & +1\\
++ title probe & 36 & +8\\
++ citation expansion & 39 & +3\\
++ second round & 43 & +4\\\bottomrule
+\end{tabular}
+\end{table}
+
+语义检索和标题探测在未见查询上贡献最大。引文与第二轮检索也增加候选 gold，但确定性 Top20 没有同步增加，第二轮后 NDCG 还出现下降。这说明扩展不是无效，而是当前排序难以完全消化新增噪声。
+
+\subsection{排序挑战实验}
+在同一 dev20 冻结候选上运行 14 个 ranking-only challenger。取消 MMR 不改变 TP，仅使 NDCG 从 0.3085 变为 0.3088，说明 MMR 不是主要瓶颈。将覆盖权重从 0.14 提高到 0.24 后 TP 从 16 增至 17、NDCG 墱至 0.3233，但增益集中于一条查询，因此未把该权重改动提升为默认 champion。去除 semantic provenance 虽增加一个 TP，却使 NDCG 降至 0.2999，因而被拒绝。
+
+\subsection{独立 validation30}
+\begin{table}[ht]
+\centering\caption{validation30 系统级结果（30 条，含 LLM rerank）}
+\begin{tabular}{lrrrrrr}\toprule
+模式 & P@20 & R@20 & F1@20 & NDCG@20 & TP & API\\\midrule
+balanced & 0.0517 & 0.4987 & 0.0895 & 0.3531 & 31 & 491\\
+efficient & 0.0483 & 0.4345 & 0.0826 & 0.3287 & 29 & 300\\
+HELIOS-Lite & 0.0433 & 0.4279 & 0.0754 & 0.3295 & 26 & 300\\\bottomrule
+\end{tabular}
+\end{table}
+
+balanced 在四项质量指标上均最高，因而保留为质量 champion。efficient 省去 citation 与 second round，使 API 调用下降 38.9\%，但 Recall@20 下降 0.0642，因此仅作为用户主动选择的低成本模式。HELIOS-Lite 在 30 条查询上全部选择停止，没有保持 dev20 上观察到的质量，不能被描述为已验证提升。
+
+\section{讨论}
+实验揭示了三个相互制约的事实。第一，增加检索通道确实能找到额外 gold，尤其是语义检索、标题探测和第二轮检索。第二，候选池扩大后，相关论文不一定进入 Top20；扩展噪声会提高统一重排难度。第三，开发集上的成本收益不能自动泛化：dev20 上不扩展能够保持质量，而 validation30 上 balanced 明显优于 efficient。
+
+HELIOS-Lite 的失败具有诊断价值。当前聚合先验对扩展成本惩罚过强，使控制器在 validation30 上全部停止。由于验证集不能用于继续调参，本轮没有据此修改效用权重。下一阶段应在新的开发数据上学习更稳健的动作收益置信区间，并让控制器区分“候选覆盖不足”和“已有候选排序不稳”两类状态。
+
+本研究还有三项限制。其一，validation30 规模有限，不能支持统计显著性或对外宣称领先。其二，不同模式分别执行 LIVE 抓取，跨 run 差异仍包含外部索引与 LLM 波动；严格策略因果结论应优先引用同一快照上的通道消融。其三，系统依赖公开 API，可用性和延迟受限流影响；冻结回放解决了评测复现，但不能消除现场网络风险。
+
+\section{结论}
+研问智搜完成了从自然语言查询到多源召回、TRACE 排序、证据展示和冻结评测的可运行闭环。独立 validation30 证明 balanced 仍是当前质量最优模式，也否定了“停止扩展可以无损降低成本”的过度结论。现有证据支持将稳定评测、多源边际诊断和训练无关控制器作为项目贡献；它不支持将 HELIOS-Lite 描述为已提升检索质量。后续工作的明确方向是，在不污染验证协议的前提下提高候选召回，并以统一重排和更稳健的动作收益估计消化扩展噪声。
+
+\section*{参考资料}
+\begin{enumerate}[leftmargin=2em]
+\item He Y, Huang G, Feng P, et al. PaSa: An LLM Agent for Comprehensive Academic Paper Search. ACL 2025. arXiv:2501.10120.
+\item Shi X, et al. SPAR: Scholar Paper Retrieval with LLM-based Agents for Enhanced Academic Search. arXiv:2507.15245, 2025.
+\item Ajith A, et al. LitSearch: A Retrieval Benchmark for Scientific Literature Search. EMNLP 2024. arXiv:2407.18940.
+\item Skarlinski M, et al. Language Agents for Answering Questions from Scientific Literature. NeurIPS 2024.
+\item OpenAlex API Documentation. \url{https://docs.openalex.org/}
+\item arXiv API Documentation. \url{https://info.arxiv.org/help/api/}
+\item Crossref REST API. \url{https://api.crossref.org/}
+\item Semantic Scholar Academic Graph API. \url{https://api.semanticscholar.org/}
+\end{enumerate}
+
+\end{document}
+

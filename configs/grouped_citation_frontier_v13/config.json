@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "method": "Grouped Query-Conditioned Citation Frontier",
+  "retrieval_schema": "gqcf-v13-grouped-1",
+  "max_seeds": 40,
+  "group_size": 10,
+  "reverse_groups": 4,
+  "per_group": 100,
+  "forward_policy": "head_weighted_references",
+  "forward_ids": 100,
+  "max_api_per_query": 5
+}

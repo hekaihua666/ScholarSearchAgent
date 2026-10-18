@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title">
+  <title id="title">寻星：AI 辅助检索</title>
+  <defs>
+    <linearGradient id="blue" x1="9" y1="9" x2="53" y2="58" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#579BFF"/><stop offset="1" stop-color="#2464E9"/>
+    </linearGradient>
+  </defs>
+  <!-- 开放的放大镜轮廓搭配中央四角星，小尺寸下仍能辨认检索含义。 -->
+  <circle cx="28" cy="28" r="20" fill="#ECF4FF"/>
+  <circle cx="28" cy="28" r="20" stroke="url(#blue)" stroke-width="6"/>
+  <path d="m43 43 12 12" stroke="url(#blue)" stroke-width="8" stroke-linecap="round"/>
+  <path d="m28 15 3.7 9.3L41 28l-9.3 3.7L28 41l-3.7-9.3L15 28l9.3-3.7L28 15Z" fill="url(#blue)"/>
+</svg>

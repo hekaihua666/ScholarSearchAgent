@@ -1,0 +1,14 @@
+{
+  "schema_version": 1,
+  "method": "Coverage-Adaptive Contract Verification",
+  "prompt_schema": "covr-v10-overflow-point-1",
+  "anchor_cards": 2,
+  "overflow_cards": 8,
+  "trigger": "no_initial_action_and_no_complete_newcomer",
+  "overflow_view": "residual_source_rank",
+  "anchor_offset_clip": 5.0,
+  "threshold": 95.0,
+  "first_pass_margin": 15.0,
+  "overflow_margin_grid": [0.0, 1.0, 2.0, 3.0, 5.0, 10.0, 15.0],
+  "max_replacements": 2
+}

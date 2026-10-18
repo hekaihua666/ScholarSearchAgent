@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "method": "Facet-Compressed Grouped Citation Frontier",
+  "retrieval_schema": "fc-gqcf-v14-1",
+  "graph_query_fields": ["research_topic", "method_constraints", "task_constraints"],
+  "graph_query_max_chars": 220,
+  "max_seeds": 40,
+  "group_size": 10,
+  "reverse_groups": 4,
+  "per_group": 100,
+  "forward_policy": "head_weighted_references",
+  "max_api_per_query": 5
+}

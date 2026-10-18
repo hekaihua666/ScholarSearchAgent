@@ -1,0 +1,7 @@
+retrieval_profile: citation
+query_portfolio: false
+dual_frontier: true
+relevant_seeds: 4
+bridge_seeds: 4
+max_neighborhood_works: 140
+local_hybrid: false

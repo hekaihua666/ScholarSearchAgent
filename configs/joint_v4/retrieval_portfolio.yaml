@@ -1,0 +1,6 @@
+retrieval_profile: portfolio
+query_portfolio: true
+max_variants: 6
+semantic_variant: pseudo_document
+dual_frontier: false
+local_hybrid: false

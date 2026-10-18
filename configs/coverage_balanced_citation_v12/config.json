@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "method": "Coverage-Balanced Query-Conditioned Citation Frontier",
+  "retrieval_schema": "qcf-v12-balanced-1",
+  "max_seeds": 40,
+  "per_reverse_lane": 100,
+  "reference_ids": 100,
+  "related_ids": 100,
+  "neighbor_allocation": "round_robin_by_seed",
+  "max_api_per_query": 4
+}

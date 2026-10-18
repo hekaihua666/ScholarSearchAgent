@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title">
+  <title id="title">智页：论文与智能灵感</title>
+  <defs>
+    <linearGradient id="blue" x1="8" y1="2" x2="58" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5B9EFF"/><stop offset="1" stop-color="#2563E8"/>
+    </linearGradient>
+  </defs>
+  <!-- 蓝色方形保留应用图标的识别度，纸页和四角星分别表达论文与 AI。 -->
+  <rect x="2" y="2" width="60" height="60" rx="18" fill="url(#blue)"/>
+  <path d="M35 15H22a5 5 0 0 0-5 5v25a5 5 0 0 0 5 5h20a5 5 0 0 0 5-5V32" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="M25 30h8M25 38h14" stroke="white" stroke-width="3.5" stroke-linecap="round"/>
+  <path d="m44 10 3.2 8.8L56 22l-8.8 3.2L44 34l-3.2-8.8L32 22l8.8-3.2L44 10Z" fill="white"/>
+</svg>

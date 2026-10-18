@@ -1,0 +1,9 @@
+retrieval_profile: joint
+query_portfolio: true
+max_variants: 6
+semantic_variant: pseudo_document
+dual_frontier: true
+relevant_seeds: 4
+bridge_seeds: 4
+max_neighborhood_works: 140
+local_hybrid: false

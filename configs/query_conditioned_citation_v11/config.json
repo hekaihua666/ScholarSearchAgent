@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "method": "Query-Conditioned Batched Citation Frontier",
+  "retrieval_schema": "qcf-v11-retrieval-1",
+  "max_seeds": 40,
+  "max_reference_ids": 100,
+  "per_reverse_lane": 50,
+  "reverse_lanes": ["query", "contract"],
+  "forward_reference_ablation": true,
+  "max_api_per_query": 3
+}

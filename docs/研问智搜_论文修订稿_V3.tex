@@ -1,0 +1,222 @@
+% !TeX program = xelatex
+\documentclass[a4paper,11pt]{ctexart}
+\usepackage[a4paper,margin=2.0cm]{geometry}
+\usepackage{booktabs,tabularx,array,amsmath,amssymb,graphicx,xcolor,hyperref}
+\usepackage{setspace,enumitem,fancyhdr,float,tikz}
+\usetikzlibrary{arrows.meta,positioning}
+\hypersetup{hidelinks}
+\setstretch{1.22}
+\setlist[itemize]{nosep,leftmargin=*,topsep=2pt,partopsep=0pt}
+\setlist[enumerate]{nosep,leftmargin=*,topsep=2pt,partopsep=0pt}
+\setlength{\parindent}{2em}
+\setlength{\headheight}{14pt}
+\widowpenalty=10000
+\clubpenalty=10000
+\pagestyle{fancy}\fancyhf{}
+\fancyhead[L]{研问智搜}\fancyhead[R]{论文修订稿 V3.0}\fancyfoot[C]{\thepage}
+\newcommand{\metric}[1]{\textbf{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+
+\title{研问智搜：基于关系证据图与受控引文前沿的复杂学术查询检索}
+\author{虫虫特工队}
+\date{2026年8月30日}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+复杂学术查询不仅描述研究主题，还常包含方法、任务、应用领域、时间和论文间关系等约束。增加检索通道可以扩大候选覆盖，但也会引入大量表面相关论文，使新增候选难以进入有限的结果集合。本文提出研问智搜，一个面向自然语言科研问题的多源论文搜索系统。系统以结构化查询契约组织必要条件和关系谓词，以种子条件图查询（Seed-Conditioned Graph Query, SCGQ）批量探索正反向引文前沿，再以关系证据图（Relational Evidence Graph, REG）分别计算条件合取、关系谓词、引文方向、种子桥接、图支持和既有相关性证据。REG 采用受保护的残差路由，只在新增论文同时通过绝对证据下限和相对现任论文的证据间隔时替换 Top20 尾部结果。为隔离外部索引变化，系统实现稳定论文身份匹配、日期截断和 LIVE--FROZEN--REPLAY 回放协议。在 40 条校准查询上，REG 将 Top20 真阳性从 23 提高到 28；在独立 20 条开发查询上从 22 提高到 25，Macro Recall 从 0.4346 提高到 0.5180；在一次性 20 条盲测上从 17 提高到 18，Macro Recall 从 0.4758 提高到 0.5008，三个集合均未移除原有真阳性。盲测扩展候选池的 Macro Recall 达到 0.5933，说明后续上限主要受新增候选的精准转化约束。REG 本地重排平均约 1.36 秒/查询，不增加大模型调用或 Token。结果表明，对复杂查询显式区分条件、关系和引文方向，比单一通用相关性分数更适合消化引文扩展带来的候选噪声。
+\end{abstract}
+
+\noindent\textbf{关键词：}复杂学术查询；论文检索；引文网络；关系证据图；多阶段排序；可复现评测
+
+\section{引言}
+文献检索决定了科研问题能够获得的证据边界。真实科研需求通常以完整问题出现，而不是若干孤立关键词：研究者可能同时限定主题、方法、任务、时间，并要求区分提出方法、扩展方法、理论分析或实际应用等不同论文角色。传统词项检索能够快速返回主题相关结果，却难以保证多个必要条件同时成立，也不会主动探索论文间的引文关系。
+
+大语言模型驱动的搜索智能体将查询理解、工具调用、结果筛选和多轮检索纳入统一流程。PaSa 使用 Crawler--Selector 双智能体和强化学习进行论文搜索，SPAR 通过查询分解、查询演化和 RefChain 扩展候选，Ai2 Paper Finder 则强调多索引检索和自适应采样。这些方法说明自主检索能够超越单次搜索，但也暴露出一个共同矛盾：检索路径越多，候选召回越高，统一排序需要处理的噪声也越大。
+
+本项目的前期审计进一步定位了这一矛盾。在固定开发查询上，大多数缺失论文最初未进入候选池，因此系统需要引文和多轮检索；然而，新增候选进入候选池后，通用局部交叉编码器并不能稳定把它们送入 Top20。换言之，``是否与查询主题相似''不足以判断一篇论文是否满足复杂查询中的必要条件和关系要求。
+
+研问智搜据此形成两阶段方法。SCGQ 以高置信种子和查询条件共同约束正反向引文探索，扩大相关候选的可达范围；REG 将候选证据分解为条件、关系、方向和图路径，再以受保护的残差路由控制替换风险。本文的核心论点是：在多源扩展已能提高候选召回的条件下，显式关系证据能够把部分新增相关论文转化为 Top20 命中，同时避免移除原有命中。本文贡献如下：
+\begin{enumerate}[leftmargin=2em]
+  \item 提出 SCGQ 受控引文前沿，将候选条件化查询、批量反向引文和正向参考文献探索组合为可回放的检索过程；
+  \item 提出 REG 排序机制，以最弱条件约束、关系谓词、引文方向和种子桥接共同建模复杂查询；
+  \item 设计受保护的残差路由，在不重排高置信头部的前提下，为新增前沿候选提供可审计的 Top20 入口；
+  \item 在校准、开发和预注册盲测三组查询上报告候选、Top20、最终集合、失败实验与运行成本，并提供完整冻结回放证据。
+\end{enumerate}
+
+\section{相关工作与项目定位}
+\subsection{学术搜索智能体}
+PaSa 将论文搜索拆分为搜索与选择两个智能体，并通过训练提高工具使用和结果筛选能力。SPAR 强调复杂问题分解、检索式演化和沿引用链搜索。LitSearch、PaperFindingBench 和 AstaBench 则从不同角度构造科学文献检索与研究智能体评测。研问智搜不复现这些系统的大规模训练流程，而是在公开学术 API 和普通笔记本环境下研究两个更具体的问题：新增候选如何通过结构化证据进入有限结果集，以及实验如何在外部索引持续变化时保持可复现。
+
+\subsection{多阶段排序与引文检索}
+常见混合检索将词项匹配、向量相似度、引用影响力和新近性融合为单一分数。该方式适合一般主题检索，但复杂查询中的关系条件具有方向性。例如，``提出某方法''通常需要沿种子的参考文献寻找更早工作，``扩展或分析某方法''则更可能沿引用该种子的后续工作寻找。REG 将这种方向差异作为独立证据，而不是把引文是否存在统一视为加分项。
+
+\section{方法}
+\begin{figure}[htbp]
+\centering
+\resizebox{0.88\textwidth}{!}{%
+\begin{tikzpicture}[
+  node distance=7mm,
+  box/.style={draw=blue!45!black,rounded corners=2pt,fill=blue!4,
+    minimum width=2.75cm,minimum height=1.25cm,align=center,font=\small},
+  arrow/.style={-{Latex[length=2.5mm]},thick,draw=blue!55!black}
+]
+\node[box] (contract) {自然语言查询\\结构化查询契约};
+\node[box,right=of contract] (base) {多源基础检索\\TRACE-Rank Top20};
+\node[box,right=of base] (frontier) {SCGQ + QCF\\受控引文前沿};
+\node[box,right=of frontier] (reg) {REG\\关系证据图};
+\node[box,right=of reg] (route) {受保护残差路由\\Top20 与证据审计};
+\draw[arrow] (contract) -- (base);
+\draw[arrow] (base) -- (frontier);
+\draw[arrow] (frontier) -- (reg);
+\draw[arrow] (reg) -- (route);
+\draw[arrow,bend left=25] (contract.north) to node[above,font=\scriptsize]{条件与关系谓词} (reg.north);
+\draw[arrow,bend right=24] (base.south) to node[below,font=\scriptsize]{高置信种子与现任结果} (route.south);
+\end{tikzpicture}}
+\caption{研问智搜的检索与排序流程。基础检索提供高置信种子，SCGQ 与 QCF 扩展可达候选，REG 仅在关系证据充分时替换 Top20 尾部论文。}
+\end{figure}
+
+\subsection{任务定义}
+给定自然语言查询 $q$、来源截止时间 $t$ 和最多返回数量 $K$，系统从多个学术数据源构造候选集合 $C$，输出排序列表 $L_K\subseteq C$。查询被表示为契约
+\begin{equation}
+Q=(\mathcal C,\rho,\mathcal E,t),
+\end{equation}
+其中 $\mathcal C=\{c_1,\ldots,c_m\}$ 为必要条件，$\rho$ 为论文与查询对象之间的关系谓词，$\mathcal E$ 为排除条件。检索和排序只能读取查询、截止日前的论文元数据和检索路径，不读取评测 gold。
+
+\subsection{多源基础检索}
+查询理解模块抽取研究主题、方法、任务、领域、时间和关系条件，并生成多条词项检索式与语义检索式。基础候选来自 OpenAlex lexical、OpenAlex semantic、arXiv、Crossref、Semantic Scholar、标题探测和第二轮查询演化。不同来源使用稳定身份映射合并，匹配优先级依次为 DOI、arXiv ID、OpenAlex ID、Semantic Scholar ID 和标准化标题。
+
+基础排序 TRACE-Rank 使用倒数排名融合统一不同检索源的原始排序，并加入语义匹配、约束覆盖、引用影响和新近性：
+\begin{equation}
+s_{\mathrm{TRACE}}(p,q)=w_r s_{\mathrm{rrf}}+w_s s_{\mathrm{sem}}+w_c s_{\mathrm{cov}}+w_a s_{\mathrm{auth}}+w_t s_{\mathrm{time}}.
+\end{equation}
+
+\subsection{种子条件图查询}
+基础检索得到的候选既是结果，也是图搜索种子。SCGQ 从相关性视图与图桥接视图选取至多 40 个种子，将种子按组写入 OpenAlex 的 OR 引用过滤器。为避免直接使用完整问题造成过度约束，系统从查询主题与种子标题共现词构造压缩查询 $q_g$。反向前沿检索引用任一种子的后续论文：
+\begin{equation}
+C_{\mathrm{rev}}=\{p\mid \exists s\in S,\;p\rightarrow s\}\cap \operatorname{Search}(q_g).
+\end{equation}
+同时，查询条件前沿使用原查询和契约查询检索反向引用，并批量解析种子的正向参考文献：
+\begin{equation}
+C_{\mathrm{fwd}}=\{p\mid \exists s\in S,\;s\rightarrow p\}.
+\end{equation}
+每个候选保留引文方向、连接种子、种子数量、检索通道和来源排名。该设计把逐种子调用压缩为分组调用，并为后续关系判断保留路径证据。
+
+\subsection{配额化前沿}
+引文前沿可能包含数百篇论文。若只按 TRACE 取前若干篇，深层图候选会再次被词项结果淹没。系统分别构造 TRACE、图支持、来源排名、引用影响和每条引文通道的排序视图，再以配额合并为最多 200 篇的前沿 $F$。该步骤不使用 gold，且保证不同方向和不同种子组均有机会进入本地重排。
+
+\subsection{关系证据图}
+对候选论文 $p$ 和必要条件 $c_j$，系统从标题和摘要计算条件证据 $s(c_j,p)\in[0,1]$。条件合取同时考虑平均覆盖和最弱条件：
+\begin{equation}
+C(p,Q)=\sqrt{\left(\frac{1}{m}\sum_{j=1}^{m}s(c_j,p)\right)\min_j s(c_j,p)}.
+\end{equation}
+当任一必要条件证据很弱时，几何合取会降低总分，但不会像硬过滤一样直接删除候选。
+
+关系谓词被归纳为 proposal、analysis、extension、taxonomy、usage 和 survey 六类。系统分别计算关系措辞证据 $S_\rho$、引文方向兼容度 $S_d$、候选连接种子与查询的桥接度 $S_b$、多种子图支持 $S_g$、TRACE 分位 $S_t$ 和本地交叉编码器分位 $S_x$。REG 分数为
+\begin{equation}
+S_{\mathrm{REG}}(p,Q)=w_cC+w_\rho S_\rho+w_dS_d+w_bS_b+w_gS_g+w_tS_t+w_xS_x.
+\end{equation}
+proposal 查询提高正向参考文献的兼容度，extension 和 analysis 查询提高反向引用的兼容度；taxonomy、survey 和 usage 使用图证据更强的冻结权重配置。
+
+\subsection{受保护的残差路由}
+REG 不重新排列整个 Top20，而是保护前 $h$ 个高置信结果，并从尾部寻找证据最弱的现任论文 $l^- $。只有当候选 $p\in F$ 同时满足
+\begin{equation}
+S_{\mathrm{REG}}(p,Q)\ge \tau,
+\qquad
+S_{\mathrm{REG}}(p,Q)-S_{\mathrm{REG}}(l^-,Q)\ge \Delta
+\end{equation}
+时才允许替换。校准后冻结 $h=15$、$\tau=0.62$、$\Delta=0.10$，每条查询最多替换一篇。最终集合与补充候选继续分离；F1 模式、均衡集合和探索 Top20 使用同一候选证据，但导出接口只返回被选择的最终集合。
+
+\subsection{冻结评测}
+LIVE 阶段记录每次外部 API 调用、参数、输出、日期过滤和错误；FROZEN 阶段把响应快照设为不可变输入；REPLAY 阶段在不访问网络的条件下重放相同调用。manifest 保存查询 ID、截止时间、代码提交、配置和结果签名。该协议用于区分算法变化与外部索引、网络和模型随机性造成的变化。
+
+\section{实验}
+\subsection{数据划分与指标}
+实验使用 AutoScholarQuery 的固定查询。40 条校准查询用于冻结 REG 权重和路由阈值；20 条开发查询只运行一次冻结配置；另从此前未用于方法设计的 blind holdout50 中预注册 20 条查询进行一次性盲测。三组分别包含 80、58 和 47 篇 gold。主要指标为查询级宏平均 Precision、Recall 和 F1，同时报告 micro TP/FP、候选可达召回、替换增益和运行成本。
+
+\subsection{Top20 主结果}
+\begin{table}[H]
+\centering
+\caption{REG 在三个固定查询集上的 Top20 结果。}
+\begin{tabular}{llrrrr}
+\toprule
+集合 & 方法 & TP & FP & Macro Recall & Macro F1\\
+\midrule
+校准40 & 原 Top20 & 23 & 775 & 0.3051 & 0.0511\\
+       & REG v18 & \textbf{28} & 770 & \textbf{0.3628} & \textbf{0.0620}\\
+开发20 & COVR v10 Top20 & 22 & 374 & 0.4346 & 0.0933\\
+       & REG v18 & \textbf{25} & 371 & \textbf{0.5180} & \textbf{0.1069}\\
+盲测20 & 冻结基线 Top20 & 17 & 383 & 0.4758 & 0.0754\\
+       & REG v18 & \textbf{18} & 382 & \textbf{0.5008} & \textbf{0.0799}\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+三个查询集分别增加 5、3 和 1 个 TP，均未移除原有 TP。开发集新增命中包括 \emph{A Theoretical Analysis of Deep Q-Learning}、\emph{UMAD} 和 \emph{ACSeg}；盲测新增命中为 \emph{Almost Tight L0-norm Certified Robustness of Top-k Predictions against Adversarial Perturbations}。这些案例覆盖理论分析、方法提案和任务方法分类，不依赖单一关系类型。
+
+\subsection{候选上限与转化效率}
+\begin{table}[H]
+\centering
+\caption{受控引文前沿带来的候选可达范围。}
+\begin{tabular}{lrrrr}
+\toprule
+集合 & 原 Top20 TP & 扩展候选 TP & 扩展候选 Macro Recall & 最终 REG TP\\
+\midrule
+校准40 & 23 & 42 & 0.5101 & 28\\
+开发20 & 22 & 27 & 0.5471 & 25\\
+盲测20 & 17 & 23 & 0.5933 & 18\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+盲测前沿找到 6 篇原 Top20 不包含的 gold，但 REG 只转化 1 篇。候选扩展因此已经提高可达上限，当前主要剩余问题是前沿动作精度，而不是继续无约束增加检索通道。
+
+\subsection{消融与失败实验}
+\begin{table}[H]
+\centering
+\caption{结构化关系证据与替代方案。}
+\begin{tabular}{llrrr}
+\toprule
+集合 & 方法 & TP & TP变化 & 原TP损失\\
+\midrule
+开发20 & 通用局部图重排 v17 & 20 & $-2$ & 2\\
+开发20 & REG v18 & 25 & $+3$ & 0\\
+校准40 & 原子瓶颈路由 ABER v19 & 24 & $+1$ & 0\\
+校准40 & REG v18 & 28 & $+5$ & 0\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+v17 只组合完整查询交叉编码、图支持和 TRACE，在开发集丢失两篇原有 gold。加入条件合取、关系谓词和方向证据后，v18 转为净增 3 篇。ABER v19 将每个必要条件分别送入通用交叉编码器并取最弱条件，但在校准集仅增加 1 篇，未通过预设门槛。该失败表明，gold 论文可能承担提案、分析、应用或背景等不同角色，不能要求每篇论文都以相同强度独立满足问题全部表述。
+
+\subsection{最终集合与运行成本}
+开发集的冻结 v6 最终集合取得 Precision 0.2917、Recall 0.3017 和 F1 0.2601。双视图一致性在开发集将 F1 提高到 0.2833，但在盲测上没有增加 TP，并引入一个额外 FP，因此当前产品只采用 REG 改善探索 Top20，不用该分支改写默认小集合。
+
+盲测中 SCGQ 与 QCF 共调用 OpenAlex 139 次，平均 6.95 次/查询；20 条 LIVE 检索、快照写入和逐条回放约耗时 316 秒。冻结本地交叉编码和 REG 特征计算耗时 27.28 秒，平均约 1.36 秒/查询。REG 不增加 LLM 调用或 Token，20 条盲测的 LIVE 与 REPLAY 候选身份序列完全一致。
+
+\section{讨论}
+实验支持两个结论。首先，受控引文前沿能够稳定增加候选 gold：校准、开发和盲测的扩展候选 TP 均高于原 Top20。其次，候选转化需要显式关系结构。通用完整查询相关性在 v17 中造成损失，而 REG 在三个查询集都实现无损净增，说明条件合取和引文方向提供了通用相似度未表达的信息。
+
+REG 的增益仍受动作精度限制。盲测 12 次替换动作中只有 1 次增加 TP，扩展候选中的另外 5 篇 gold 没有进入 Top20。可能原因包括查询契约抽取不完整、关系措辞的规则覆盖有限，以及不同论文角色不能由同一候选级目标统一刻画。ABER 的失败进一步排除了一个简单解释：逐条件语义分数越严格并不必然越好，因为相关集合本身可能由共同覆盖问题的多篇论文组成。
+
+当前证据还不能支持跨基准领先结论。赛题材料给出的 PaSa、SPAR 和 Ai2 Paper Finder 数字来自不同数据集、候选源、时间截断和评测器，与本文实验不能直接形成排行榜比较。本文的可靠结论限定为相同冻结候选协议下的版本比较。预注册盲测只有 20 条，未来仍需在更大隐藏查询集上确认增益分布，并进一步提高替换动作精度。
+
+工程上，关系证据图已接入端到端系统。用户可以在 REG 与低成本检索之间切换；界面分别展示条件合取、最弱条件、关系谓词、引文方向和种子桥接，并将被提升论文与原 Top20 补充候选分区展示。该设计使一次替换能够被复核，而不是只返回一个不可解释的总分。
+
+\section{结论}
+研问智搜将复杂学术查询检索拆分为受控候选扩展和关系证据路由。SCGQ 提高引文前沿中的相关论文覆盖，REG 通过条件合取、关系谓词、引文方向和种子桥接，把部分新增候选送入 Top20。冻结校准、独立开发和一次性盲测均观察到 TP 净增且无原 TP 损失，本地排序不增加 LLM 成本。当前性能上限不再只由候选缺失决定，而主要受前沿候选的精准转化约束；后续工作应围绕论文角色和集合级互补证据建模，而不是继续扩大无约束检索规模。
+
+\section*{参考文献}
+\begin{enumerate}[leftmargin=2em]
+\item He Y, Huang G, Feng P, et al. PaSa: An LLM Agent for Comprehensive Academic Paper Search. ACL 2025. arXiv:2501.10120.
+\item Shi X, Li Y, Kou Q, et al. SPAR: Scholar Paper Retrieval with LLM-based Agents for Enhanced Academic Search. arXiv:2507.15245, 2025.
+\item Ajith A, Xia M, Chevalier A, et al. LitSearch: A Retrieval Benchmark for Scientific Literature Search. EMNLP 2024. arXiv:2407.18940.
+\item Feldman S, et al. AstaBench: Rigorous Benchmarking of AI Agents with a Scientific Research Suite. arXiv:2510.21652, 2025.
+\item Skarlinski M, et al. Language Agents for Answering Questions from Scientific Literature. NeurIPS 2024.
+\item Khattab O, Santhanam K, Li X, et al. Demonstrate-Search-Predict: Composing Retrieval and Language Models for Knowledge-Intensive NLP. arXiv:2212.14024, 2022.
+\item OpenAlex API Documentation. \url{https://docs.openalex.org/}
+\item Semantic Scholar Academic Graph API. \url{https://api.semanticscholar.org/}
+\end{enumerate}
+
+\end{document}

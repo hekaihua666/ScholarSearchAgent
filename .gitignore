@@ -1,0 +1,75 @@
+# ── Secrets (NEVER commit / never ship in submission zip) ──
+.env
+.env.*
+!.env.example
+*.key
+*secret*
+*credential*
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+build/
+dist/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# ── Runtime caches & logs ──
+cache/
+*.log
+*.err
+server*.log
+uvicorn*.log
+test_*.log
+*.tmp
+*.bak
+
+# ── Local-only handoff material (contains this machine's paths / network config) ──
+本机运行说明.md
+队员先看.md
+源码文件清单.json
+包内验证结果.json
+codex-continuity/
+backups/
+references_external/
+tmp/
+
+# ── Large local assets (not required to run the project) ──
+*.pptx
+*.docx
+output/
+docs/build/
+artifacts/
+
+# Large/generated evaluation artifacts (kept locally, never overwritten)
+reports/frozen_eval/
+reports/audit_traces/
+reports/*.json
+reports/*.png
+reports/*.csv
+reports/overnight_iteration/ui_audit/before/
+reports/overnight_iteration/ui_audit/after/
+reports/f1_selector_v3/arxiv_metadata.json
+reports/f1_selector_v3/*_pairs.jsonl
+reports/joint_optimization_v4/*_candidates*.jsonl
+reports/joint_optimization_v4/*_scored*.jsonl
+reports/joint_optimization_v4/*_ace_llm*.jsonl
+reports/joint_optimization_v4/model_cache/
+reports/joint_optimization_v4/*_private.*
+
+# Frontend/browser dependencies and captures
+node_modules/
+playwright-report/
+test-results/
+.cache/
+
+# ── OS / editor ──
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.claude/

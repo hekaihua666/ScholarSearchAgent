@@ -1,0 +1,22 @@
+schema_version: 1
+protocol: official_set_f1_candidate
+candidate_pool:
+  preserve: true
+  max_ranked_candidates: 20
+profiles:
+  f1:
+    strategy: fixed_k
+    k: 2
+    source: f1_champion_fixed_k2
+  balanced_set:
+    strategy: fixed_k
+    k: 8
+    source: pre_registered_precision_recall_compromise
+  exploratory:
+    strategy: fixed_k
+    k: 20
+    source: strict_recall_floor_fallback
+payload:
+  include: selected_results
+  exclude: supplementary_candidates
+validation_lock_sha256: c557c1fa73e60e32456611e8037aff67c8d45ecf827f4c5454de874c3ed0f1ef

@@ -1,0 +1,217 @@
+/* 首页与结果共用主题色；只替换颜色与阴影，保留现有布局和检索逻辑。 */
+:root {
+  /* 01 浅紫预览。默认首页由 theme=sky 使用下方的蓝色配置。 */
+  --home-background: linear-gradient(135deg, #fcfaff 0%, #f5f7ff 55%, #faf7ff 100%);
+  --home-glow: rgba(167,139,250,.10);
+  --home-text: #30253f;
+  --home-secondary: #786487;
+  --home-muted: #95839f;
+  --home-placeholder: #8a8099;
+  --home-accent: #8050db;
+  --home-soft: #f0e7ff;
+  --home-control: #fcfaff;
+  --home-border: #e4ddee;
+  --home-hover-border: #cdb2ee;
+  --home-divider: #f0eaf6;
+  --home-shadow: 103,75,157;
+  --home-send: #8050db;
+  --home-send-hover: #6d3cc2;
+  --home-send-empty: #eee8fb;
+  --home-send-empty-icon: #b6a2d5;
+  --home-footer: #f9f7fd;
+}
+
+/* 02 晴空蓝：白底与蓝色光晕，强调清爽感。 */
+:root[data-theme="sky"] {
+  --home-background: linear-gradient(135deg, #fbfdff 0%, #f0f7ff 55%, #f5faff 100%);
+  --home-glow: rgba(96,165,250,.12);
+  --home-text: #23334d;
+  --home-secondary: #526985;
+  --home-muted: #7a8da7;
+  --home-placeholder: #7b8ba2;
+  --home-accent: #3478ed;
+  --home-soft: #e6f0ff;
+  --home-control: #f8fbff;
+  --home-border: #dce7f5;
+  --home-hover-border: #adcbf4;
+  --home-divider: #edf2fa;
+  --home-shadow: 66,112,180;
+  --home-send: #3478ed;
+  --home-send-hover: #2467d6;
+  --home-send-empty: #e5efff;
+  --home-send-empty-icon: #8baddd;
+  --home-footer: #f5f9ff;
+}
+
+/* 03 薄荷绿：绿色强调与轻微青色背景。 */
+:root[data-theme="mint"] {
+  --home-background: linear-gradient(135deg, #fbfefc 0%, #effaf6 55%, #f2fbfb 100%);
+  --home-glow: rgba(82,196,164,.12);
+  --home-text: #243e36;
+  --home-secondary: #55786c;
+  --home-muted: #7d998f;
+  --home-placeholder: #7c938b;
+  --home-accent: #159b85;
+  --home-soft: #e2f5ee;
+  --home-control: #f8fdfb;
+  --home-border: #d9eae2;
+  --home-hover-border: #a4d9c6;
+  --home-divider: #eaf4ef;
+  --home-shadow: 52,130,107;
+  --home-send: #159b85;
+  --home-send-hover: #107e6c;
+  --home-send-empty: #e2f5ee;
+  --home-send-empty-icon: #91bfb2;
+  --home-footer: #f4faf7;
+}
+
+/* 04 蜜桃橙：暖白背景与珊瑚橙强调。 */
+:root[data-theme="peach"] {
+  --home-background: linear-gradient(135deg, #fffdf9 0%, #fff5ef 55%, #fff8f6 100%);
+  --home-glow: rgba(251,164,133,.14);
+  --home-text: #44312d;
+  --home-secondary: #85675e;
+  --home-muted: #a08378;
+  --home-placeholder: #9a857e;
+  --home-accent: #e26d52;
+  --home-soft: #ffebe2;
+  --home-control: #fffbf8;
+  --home-border: #f0dfd5;
+  --home-hover-border: #efbeaa;
+  --home-divider: #f8eee7;
+  --home-shadow: 167,105,79;
+  --home-send: #e26d52;
+  --home-send-hover: #cb543a;
+  --home-send-empty: #fff0e8;
+  --home-send-empty-icon: #dcb09c;
+  --home-footer: #fff9f4;
+}
+
+/* 05 极简黑白：去掉彩色光晕，用黑色强调关键入口。 */
+:root[data-theme="ink"] {
+  --home-background: #fafafa;
+  --home-glow: transparent;
+  --home-text: #24262b;
+  --home-secondary: #62656d;
+  --home-muted: #8a8d94;
+  --home-placeholder: #858890;
+  --home-accent: #24262b;
+  --home-soft: #ededf0;
+  --home-control: #fcfcfd;
+  --home-border: #e3e3e7;
+  --home-hover-border: #b7b8c1;
+  --home-divider: #efeff2;
+  --home-shadow: 45,46,53;
+  --home-send: #2e3036;
+  --home-send-hover: #101115;
+  --home-send-empty: #eeeeef;
+  --home-send-empty-icon: #a7a7ae;
+  --home-footer: #f7f7f8;
+}
+
+/* 统一应用首页颜色，尺寸、排版和圆形箭头保持一致。 */
+.hero { background:var(--home-background); }
+.hero::before { background:radial-gradient(ellipse at 50% 28%,var(--home-glow),transparent 58%); }
+.hero .brand-ai { color:var(--home-accent); }
+.hero .brand-name,.hero .welcome-title { color:var(--home-text); }
+.hero .brand-en { color:var(--home-secondary); }
+.hero .welcome-accent { color:var(--home-accent); }
+.hero .search-composer { border-color:var(--home-border); box-shadow:0 16px 52px rgba(var(--home-shadow),.08); }
+.hero .search-composer:focus-within { border-color:var(--home-hover-border); box-shadow:0 16px 52px rgba(var(--home-shadow),.10),0 0 0 3px rgba(var(--home-shadow),.08); }
+.hero #query { color:var(--home-text); }
+.hero #query::placeholder { color:var(--home-placeholder); }
+.hero .composer-tools { border-color:var(--home-divider); }
+.hero #searchBtn { background:var(--home-send); color:#fff; }
+.hero #searchBtn:not(:disabled):hover { background:var(--home-send-hover); }
+/* 空白输入时淡色禁用，填写有效内容后使用主题色和白色箭头。 */
+.hero #searchBtn:disabled { background:var(--home-send-empty); color:var(--home-send-empty-icon); }
+/* 等待响应时仍显示主题色，但降低透明度，并保持不可重复发送。 */
+.hero #searchBtn[aria-busy="true"] { background:var(--home-send); color:#fff; opacity:.55; cursor:wait; }
+.hero .mode-btn { border-color:var(--home-border); background:var(--home-control); color:var(--home-secondary); }
+.hero .mode-btn:hover { border-color:var(--home-hover-border); background:var(--home-soft); }
+.hero .mode-btn.active { color:var(--home-accent); border-color:var(--home-hover-border); background:var(--home-soft); }
+.hero .mode-btn:focus-visible,.hero #searchBtn:focus-visible,.hero .eg-btn:focus-visible { outline-color:var(--home-accent); }
+.hero .examples-lbl,.hero .eg-desc,.hero .eg-arrow { color:var(--home-muted); }
+.hero .eg-btn { border-color:var(--home-border); color:var(--home-secondary); }
+.hero .eg-btn:hover { border-color:var(--home-hover-border); }
+footer { color:var(--home-muted); background:var(--home-footer); border-color:var(--home-divider); }
+footer em { color:var(--home-muted); }
+
+/* 结果区原来使用深色变量，统一映射到当前浅色主题，避免上下两套配色。 */
+:root {
+  --bg: var(--home-footer);
+  --card: #fff;
+  --card2: var(--home-control);
+  --border: var(--home-border);
+  --border-h: var(--home-hover-border);
+  --cyan: var(--home-send-hover);
+  --cyan2: var(--home-send-hover);
+  --blue: var(--home-send-hover);
+  --purple: #7c3aed;
+  --green: #0f766e;
+  --amber: #a16207;
+  --red: #b91c1c;
+  --text: var(--home-text);
+  --text2: var(--home-secondary);
+  --muted: #5f7088;
+  --shadow: 0 4px 24px rgba(var(--home-shadow),.05);
+  --shadow-h: 0 8px 28px rgba(var(--home-shadow),.10);
+}
+
+/* 背景、工具栏和操作按钮与首页衔接，去掉旧深色网格与光球。 */
+body::before,.bg-orbs { display:none; }
+a:hover { color:var(--home-send-hover); }
+.result-actions { background:rgba(255,255,255,.96); }
+.action-title { color:var(--text2); }
+.action-btn,.plink-btn,.back-to-search { background:var(--card); color:var(--cyan); border-color:var(--border); }
+.action-btn:hover,.plink-btn:hover,.back-to-search:hover { background:var(--home-soft); color:var(--cyan); border-color:var(--border-h); }
+.rs-btn { background:var(--card); }
+.rs-btn:hover { background:var(--home-control); }
+.rs-btn.active,.rs-btn.active:hover { background:var(--cyan); color:#fff; border-color:var(--cyan); }
+
+/* 论文卡片与展开详情使用白底和浅蓝层次，最高相关论文以主题色边框标记。 */
+.sec:hover,.pcard:hover,.info-card:hover { border-color:var(--border-h); }
+.sec-head { background:var(--card2); border-color:var(--border); }
+/* 区块图标原为行内指定颜色，因此在主题层统一覆盖其前景与背景。 */
+.sec-ico { background:var(--home-soft) !important; color:var(--cyan) !important; }
+.paper-details,.info-card,.mcard,.helios-step { background:var(--card2); border-color:var(--border); }
+.pcard.pcard-best { border-color:var(--home-hover-border); box-shadow:0 0 0 1px var(--home-soft),var(--shadow); }
+.rb-best { background:var(--home-soft); color:var(--cyan); border-color:var(--home-hover-border); }
+.pnum { background:var(--home-soft); color:var(--cyan); border-color:var(--home-hover-border); }
+.pmeta-sep { color:var(--border-h); }
+.preason { background:var(--home-control); color:var(--text2); border-left-color:var(--home-accent); }
+.pscore-big { background:none; color:var(--cyan); -webkit-text-fill-color:currentColor; }
+.pscoreexp { background:#fffbeb; color:#92400e; border-left-color:#e9bc62; }
+.bar-track { background:var(--home-border); }
+.hint,.qlist li { background:var(--home-control); border-color:var(--border); }
+.hint { border-left-color:var(--home-accent); }
+.src-chip,.term-chip,.api-oa { background:var(--home-soft); border-color:var(--border); color:var(--cyan); }
+.rb-first { color:var(--green); }
+.api-ax { color:var(--red); }
+.kw4 { color:#2563eb; }
+
+/* 运行记录、表格和关联图谱也使用浅色底，保证展开后仍清楚可读。 */
+.ilabel,.fn-stat,.mlbl { color:var(--text2); }
+.mnum.zero { color:var(--muted); }
+.mcard:hover { border-color:var(--border-h); box-shadow:var(--shadow-h); }
+.flow-node { background:var(--home-control); border-color:var(--border); }
+.flow-node:hover { background:var(--home-soft); border-color:var(--border-h); }
+.flow-arrow { color:var(--border-h); }
+.div { background:var(--border); }
+.rtbl th { background:var(--home-control); border-color:var(--border); }
+.rtbl td { border-color:var(--border); }
+.rtbl tbody tr:hover td { background:var(--home-control); }
+.g-edge { stroke:var(--home-hover-border); }
+.g-edge.hot { stroke:var(--home-accent); }
+.g-hublabel { fill:var(--text); }
+.graph-tip { background:var(--card); border-color:var(--border-h); box-shadow:var(--shadow-h); }
+.scan-wrap { background:var(--home-soft); }
+
+/* 保留异常和提醒的语义色，并将原深色界面的浅色文字改为可读的深色。 */
+.search-notice { background:#fffbeb; color:#92400e; border-color:#f0d798; }
+.err-title,.err-badge,.err-retry-btn { color:var(--red); }
+.err-badge,.err-retry-btn { background:#fff1f2; border-color:#fecdd3; }
+.err-retry-btn:hover { background:#ffe4e6; border-color:#fda4af; }
+.err-detail { background:#fff8f8; }
+::-webkit-scrollbar-thumb { background:var(--home-hover-border); }
+::-webkit-scrollbar-thumb:hover { background:var(--home-accent); }
