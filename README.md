@@ -1,4 +1,4 @@
-# 研寻 AI · Scholar Search Agent
+# 研问智搜 · Scholar Search Agent
 
 面向复杂科研问题的学术论文检索与推荐系统。
 
